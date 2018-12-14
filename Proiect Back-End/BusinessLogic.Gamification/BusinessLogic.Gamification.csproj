@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Read\Abstractions\" />
+    <Folder Include="Read\Configurations\" />
+    <Folder Include="Read\Implementations\" />
+    <Folder Include="Write\Abstractions\" />
+    <Folder Include="Write\Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess.Gamification\DataAccess.Gamification.csproj" />
+  </ItemGroup>
+
+</Project>
