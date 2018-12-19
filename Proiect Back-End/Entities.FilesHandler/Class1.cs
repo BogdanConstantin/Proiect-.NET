@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities.FilesHandler
+﻿namespace Entities.FilesHandler
 {
     public class Class1
     {

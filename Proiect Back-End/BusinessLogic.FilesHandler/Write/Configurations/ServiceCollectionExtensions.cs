@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.FilesHandler.Write.Configurations;
+﻿using DataAccess.FilesHandler.Write.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLogic.FilesHandler.Write.Configurations

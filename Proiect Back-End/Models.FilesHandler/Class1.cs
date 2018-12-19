@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Models.FilesHandler
+﻿namespace Models.FilesHandler
 {
     public class Class1
     {

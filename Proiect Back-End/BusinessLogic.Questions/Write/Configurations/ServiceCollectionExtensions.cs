@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Questions.Write.Configurations;
+﻿using DataAccess.Questions.Write.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLogic.Questions.Write.Configurations

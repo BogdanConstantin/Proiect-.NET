@@ -3,77 +3,79 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{8001CD39-CDC7-43E5-AD93-72C78570A29B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{8001CD39-CDC7-43E5-AD93-72C78570A29B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Services", "01 - Services", "{325F8354-BF5E-4EBC-8A7A-8D63EAD60913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gamification", "Gamification\Gamification.csproj", "{E2455061-9C5C-4C53-83DB-B21B4A16CB01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gamification", "Gamification\Gamification.csproj", "{E2455061-9C5C-4C53-83DB-B21B4A16CB01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions", "Questions\Questions.csproj", "{1309E87A-FC02-4934-BB6E-EDDCCE8ED124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions", "Questions\Questions.csproj", "{1309E87A-FC02-4934-BB6E-EDDCCE8ED124}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Entities", "02 - Entities", "{9E27A012-EFC7-49E2-B038-FDD2D36FF85B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{9E27A012-EFC7-49E2-B038-FDD2D36FF85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Authentication", "Entities.Authentication\Entities.Authentication.csproj", "{BF1BA790-D1E7-4121-9965-1A9A5380B205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Authentication", "Entities.Authentication\Entities.Authentication.csproj", "{BF1BA790-D1E7-4121-9965-1A9A5380B205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Questions", "Entities.Questions\Entities.Questions.csproj", "{23A37017-27A6-4600-BD2D-3C31207185E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Questions", "Entities.Questions\Entities.Questions.csproj", "{23A37017-27A6-4600-BD2D-3C31207185E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notifications\Notifications.csproj", "{2DB72358-BB78-41A9-A7FA-9E579FAF4AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifications", "Notifications\Notifications.csproj", "{2DB72358-BB78-41A9-A7FA-9E579FAF4AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Notifications", "Entities.Notifications\Entities.Notifications.csproj", "{248EA466-1E16-4EF3-8B65-0167F338B00B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Notifications", "Entities.Notifications\Entities.Notifications.csproj", "{248EA466-1E16-4EF3-8B65-0167F338B00B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.FilesHandler", "Entities.FilesHandler\Entities.FilesHandler.csproj", "{41ABF0AC-221B-4FF5-A9A1-B21CCD4405F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.FilesHandler", "Entities.FilesHandler\Entities.FilesHandler.csproj", "{41ABF0AC-221B-4FF5-A9A1-B21CCD4405F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesHandler", "FilesHandler\FilesHandler.csproj", "{BCAB2CD6-EA1E-4AF4-A382-434984ED547C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesHandler", "FilesHandler\FilesHandler.csproj", "{BCAB2CD6-EA1E-4AF4-A382-434984ED547C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesManagement", "ClassesManagement\ClassesManagement.csproj", "{9CBC54D0-7756-4DD0-A41B-D3D8E3BB4012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassesManagement", "ClassesManagement\ClassesManagement.csproj", "{9CBC54D0-7756-4DD0-A41B-D3D8E3BB4012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.ClassesManagement", "Entities.ClassesManagement\Entities.ClassesManagement.csproj", "{261967F6-7262-4F62-BECF-33ED16902723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.ClassesManagement", "Entities.ClassesManagement\Entities.ClassesManagement.csproj", "{261967F6-7262-4F62-BECF-33ED16902723}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Models", "03 - Models", "{713FBFD0-C87B-4FB9-955F-E46500C22276}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{713FBFD0-C87B-4FB9-955F-E46500C22276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.Authentication", "Models.Authentication\Models.Authentication.csproj", "{07B93C17-AC75-4913-AC4B-599FFBA1F3E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Authentication", "Models.Authentication\Models.Authentication.csproj", "{07B93C17-AC75-4913-AC4B-599FFBA1F3E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.ClassesManagement", "Models.ClassesManagement\Models.ClassesManagement.csproj", "{6286881C-BF44-4E29-9BAC-06B3F0D77346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.ClassesManagement", "Models.ClassesManagement\Models.ClassesManagement.csproj", "{6286881C-BF44-4E29-9BAC-06B3F0D77346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.FilesHandler", "Models.FilesHandler\Models.FilesHandler.csproj", "{A88888D2-2DAC-428C-ADAF-4EEED912F74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.FilesHandler", "Models.FilesHandler\Models.FilesHandler.csproj", "{A88888D2-2DAC-428C-ADAF-4EEED912F74F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.Notification", "Models.Notification\Models.Notification.csproj", "{1614497C-243F-4B6A-A156-B8183761E072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Notification", "Models.Notification\Models.Notification.csproj", "{1614497C-243F-4B6A-A156-B8183761E072}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.Questions", "Models.Questions\Models.Questions.csproj", "{FAEA532C-5CB0-4067-B233-5E05B10974A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Questions", "Models.Questions\Models.Questions.csproj", "{FAEA532C-5CB0-4067-B233-5E05B10974A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Gamification", "Entities.Gamification\Entities.Gamification.csproj", "{A32C3CC0-B0BF-46A3-BB28-FBDDD38FCDAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities.Gamification", "Entities.Gamification\Entities.Gamification.csproj", "{A32C3CC0-B0BF-46A3-BB28-FBDDD38FCDAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.Gamification", "Models.Gamification\Models.Gamification.csproj", "{32A2D4D0-A757-49A8-BB2D-949BE4761525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models.Gamification", "Models.Gamification\Models.Gamification.csproj", "{32A2D4D0-A757-49A8-BB2D-949BE4761525}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - DataAccess", "04 - DataAccess", "{7344CA34-B194-4ED2-A0FB-0A4CB7BE8F0E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - DataAccess", "03 - DataAccess", "{7344CA34-B194-4ED2-A0FB-0A4CB7BE8F0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.FilesHandler", "DataAccess.FilesHandler\DataAccess.FilesHandler.csproj", "{47883963-5E92-4CEB-9C4C-25A6A5F22368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.FilesHandler", "DataAccess.FilesHandler\DataAccess.FilesHandler.csproj", "{47883963-5E92-4CEB-9C4C-25A6A5F22368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Authentication", "DataAccess.Authentication\DataAccess.Authentication.csproj", "{3E093119-72DD-4B97-BFC8-3387A65EDC40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Authentication", "DataAccess.Authentication\DataAccess.Authentication.csproj", "{3E093119-72DD-4B97-BFC8-3387A65EDC40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.ClassesManagement", "DataAccess.ClassesManagement\DataAccess.ClassesManagement.csproj", "{90DF5380-9E9D-4BEF-86CC-94FA5387514D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.ClassesManagement", "DataAccess.ClassesManagement\DataAccess.ClassesManagement.csproj", "{90DF5380-9E9D-4BEF-86CC-94FA5387514D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Gamification", "DataAccess.Gamification\DataAccess.Gamification.csproj", "{E5D1F2C1-3FF1-4586-900C-5BF2D8E87455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Gamification", "DataAccess.Gamification\DataAccess.Gamification.csproj", "{E5D1F2C1-3FF1-4586-900C-5BF2D8E87455}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Notifications", "DataAccess.Notifications\DataAccess.Notifications.csproj", "{0BA416FC-05E6-4CFA-A214-FFF4F7EC0073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Notifications", "DataAccess.Notifications\DataAccess.Notifications.csproj", "{0BA416FC-05E6-4CFA-A214-FFF4F7EC0073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Questions", "DataAccess.Questions\DataAccess.Questions.csproj", "{5B04C320-A9D0-4FB3-ABDD-363A480D4BE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Questions", "DataAccess.Questions\DataAccess.Questions.csproj", "{5B04C320-A9D0-4FB3-ABDD-363A480D4BE2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - BusinessLogic", "05 - BusinessLogic", "{C527E99D-5AC8-450F-A04E-CD81343BB1AC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - BusinessLogic", "04 - BusinessLogic", "{C527E99D-5AC8-450F-A04E-CD81343BB1AC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Tests", "06 - Tests", "{718CC3AD-B3E0-4CCF-B057-EC9C97CB118E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Tests", "05 - Tests", "{718CC3AD-B3E0-4CCF-B057-EC9C97CB118E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.Authentication", "BusinessLogic.Authentication\BusinessLogic.Authentication.csproj", "{8B151F74-F200-4B5A-82CA-19C7707E81F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Authentication", "BusinessLogic.Authentication\BusinessLogic.Authentication.csproj", "{8B151F74-F200-4B5A-82CA-19C7707E81F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.ClassesManagement", "BusinessLogic.ClassesManagement\BusinessLogic.ClassesManagement.csproj", "{2F04AD02-A245-426F-A0B9-17C800E96799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.ClassesManagement", "BusinessLogic.ClassesManagement\BusinessLogic.ClassesManagement.csproj", "{2F04AD02-A245-426F-A0B9-17C800E96799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.FilesHandler", "BusinessLogic.FilesHandler\BusinessLogic.FilesHandler.csproj", "{0E7D6E6E-93F2-4B3C-828B-316CA91BB874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.FilesHandler", "BusinessLogic.FilesHandler\BusinessLogic.FilesHandler.csproj", "{0E7D6E6E-93F2-4B3C-828B-316CA91BB874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.Gamification", "BusinessLogic.Gamification\BusinessLogic.Gamification.csproj", "{B41F2109-C09A-4574-88EF-F408DEC89A3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Gamification", "BusinessLogic.Gamification\BusinessLogic.Gamification.csproj", "{B41F2109-C09A-4574-88EF-F408DEC89A3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.Notifications", "BusinessLogic.Notifications\BusinessLogic.Notifications.csproj", "{AA7816AC-F579-46AB-BC17-4CC1166617B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Notifications", "BusinessLogic.Notifications\BusinessLogic.Notifications.csproj", "{AA7816AC-F579-46AB-BC17-4CC1166617B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.Questions", "BusinessLogic.Questions\BusinessLogic.Questions.csproj", "{BDD428D5-FF51-467A-BB13-FE5003C333DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Questions", "BusinessLogic.Questions\BusinessLogic.Questions.csproj", "{BDD428D5-FF51-467A-BB13-FE5003C333DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Domains", "02 - Domains", "{53080781-AE6C-47EB-A488-4238F5FCF9E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +211,7 @@ Global
 		{8001CD39-CDC7-43E5-AD93-72C78570A29B} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
 		{E2455061-9C5C-4C53-83DB-B21B4A16CB01} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
 		{1309E87A-FC02-4934-BB6E-EDDCCE8ED124} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
+		{9E27A012-EFC7-49E2-B038-FDD2D36FF85B} = {53080781-AE6C-47EB-A488-4238F5FCF9E0}
 		{BF1BA790-D1E7-4121-9965-1A9A5380B205} = {9E27A012-EFC7-49E2-B038-FDD2D36FF85B}
 		{23A37017-27A6-4600-BD2D-3C31207185E2} = {9E27A012-EFC7-49E2-B038-FDD2D36FF85B}
 		{2DB72358-BB78-41A9-A7FA-9E579FAF4AC3} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
@@ -217,6 +220,7 @@ Global
 		{BCAB2CD6-EA1E-4AF4-A382-434984ED547C} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
 		{9CBC54D0-7756-4DD0-A41B-D3D8E3BB4012} = {325F8354-BF5E-4EBC-8A7A-8D63EAD60913}
 		{261967F6-7262-4F62-BECF-33ED16902723} = {9E27A012-EFC7-49E2-B038-FDD2D36FF85B}
+		{713FBFD0-C87B-4FB9-955F-E46500C22276} = {53080781-AE6C-47EB-A488-4238F5FCF9E0}
 		{07B93C17-AC75-4913-AC4B-599FFBA1F3E3} = {713FBFD0-C87B-4FB9-955F-E46500C22276}
 		{6286881C-BF44-4E29-9BAC-06B3F0D77346} = {713FBFD0-C87B-4FB9-955F-E46500C22276}
 		{A88888D2-2DAC-428C-ADAF-4EEED912F74F} = {713FBFD0-C87B-4FB9-955F-E46500C22276}

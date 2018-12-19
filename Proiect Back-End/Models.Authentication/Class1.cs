@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Models.Authentication
+﻿namespace Models.Authentication
 {
     public class Class1
     {

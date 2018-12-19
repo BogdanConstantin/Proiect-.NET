@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Models.Notification
+﻿namespace Models.Notification
 {
     public class Class1
     {

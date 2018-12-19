@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataAccess.ClassesManagement.Write.Configurations.Entities;
+using Entities.ClassesManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.ClassesManagement.Write
@@ -13,9 +12,13 @@ namespace DataAccess.ClassesManagement.Write
 
         }
 
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Laboratory> Laboratories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
+            modelBuilder.ApplyConfiguration(new LaboratoryConfiguration());
         }
     }
 }

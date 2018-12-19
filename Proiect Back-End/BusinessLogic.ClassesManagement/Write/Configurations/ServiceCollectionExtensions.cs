@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.ClassesManagement.Write.Configurations;
+﻿using DataAccess.ClassesManagement.Write.Configurations;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace BusinessLogic.ClassesManagement.Write.Configurations
 {

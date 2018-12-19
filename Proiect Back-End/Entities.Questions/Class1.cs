@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities.Questions
+﻿namespace Entities.Questions
 {
     public class Class1
     {

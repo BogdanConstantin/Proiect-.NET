@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Models.Gamification
+﻿namespace Models.Gamification
 {
     public class Class1
     {

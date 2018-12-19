@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Gamification.Write.Configurations;
+﻿using DataAccess.Gamification.Write.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLogic.Gamification.Write.Configurations

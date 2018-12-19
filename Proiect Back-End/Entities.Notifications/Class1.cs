@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities.Notifications
+﻿namespace Entities.Notifications
 {
     public class Class1
     {

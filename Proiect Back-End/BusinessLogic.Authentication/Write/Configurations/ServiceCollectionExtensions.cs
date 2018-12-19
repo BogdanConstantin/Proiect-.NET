@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Authentication.Write.Configurations;
+﻿using DataAccess.Authentication.Write.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLogic.Authentication.Write.Configurations
