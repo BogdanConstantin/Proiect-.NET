@@ -7,6 +7,6 @@ namespace Entities.ClassesManagement
     public enum UserPosition
     {
         Student = 0,
-        Professor = 1
+        Teacher = 1
     }
 }
