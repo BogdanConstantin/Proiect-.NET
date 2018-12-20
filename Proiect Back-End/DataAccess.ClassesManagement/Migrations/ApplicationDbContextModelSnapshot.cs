@@ -48,16 +48,14 @@ namespace DataAccess.ClassesManagement.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Entities.ClassesManagement.Laboratory", b =>
+            modelBuilder.Entity("Entities.ClassesManagement.CourseManagement", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("AuthorId");
 
-                    b.Property<string>("CourseTitle")
-                        .IsRequired()
-                        .HasMaxLength(35);
+                    b.Property<Guid>("ClassId");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasMaxLength(7);
@@ -67,15 +65,61 @@ namespace DataAccess.ClassesManagement.Migrations
                     b.Property<DateTime>("LastChangeDate")
                         .HasMaxLength(7);
 
-                    b.Property<int>("Semester")
-                        .HasMaxLength(2);
+                    b.Property<Guid>("UserId");
 
-                    b.Property<int>("Year")
-                        .HasMaxLength(2);
+                    b.Property<string>("UserPosition")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Laboratories");
+                    b.HasIndex("ClassId");
+
+                    b.ToTable("CourseManagements");
+                });
+
+            modelBuilder.Entity("Entities.ClassesManagement.LaboratoryManagement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("AuthorId");
+
+                    b.Property<Guid>("ClassId");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasMaxLength(7);
+
+                    b.Property<Guid>("EntityId");
+
+                    b.Property<DateTime>("LastChangeDate")
+                        .HasMaxLength(7);
+
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("UserPosition")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
+
+                    b.ToTable("LaboratoryManagements");
+                });
+
+            modelBuilder.Entity("Entities.ClassesManagement.CourseManagement", b =>
+                {
+                    b.HasOne("Entities.ClassesManagement.Course", "ManagedCourse")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.ClassesManagement.LaboratoryManagement", b =>
+                {
+                    b.HasOne("Entities.ClassesManagement.Course", "ManagedLaboratory")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
