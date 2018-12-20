@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Entities.ClassesManagement;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.ClassesManagement.Write.Configurations.Entities
