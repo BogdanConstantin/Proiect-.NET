@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccess.ClassesManagement\DataAccess.ClassesManagement.csproj" />
+    <ProjectReference Include="..\Models.ClassesManagement\Models.ClassesManagement.csproj" />
   </ItemGroup>
 
 </Project>
