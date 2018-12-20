@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ClassesManagement
 {
@@ -21,6 +22,11 @@ namespace ClassesManagement
         { 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "ClassesManagement API", Version = "v1" });
+            });
+
             services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
         }
 
@@ -35,6 +41,13 @@ namespace ClassesManagement
             {
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClassesManagement API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
