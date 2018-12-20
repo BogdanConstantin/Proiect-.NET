@@ -1,5 +1,7 @@
 ﻿namespace ClassesManagement.Controllers
 {
+    using System;
+
     using BusinessLogic.ClassesManagement.Write.Abstractions;
 
     using Microsoft.AspNetCore.Mvc;
@@ -24,5 +26,22 @@
 
             return Ok(courseDto);
         }
+
+        [HttpPut("{courseEntityId:guid}")]
+        public IActionResult Update([FromBody] CourseDto courseDto, [FromRoute] Guid courseEntityId)
+        {
+            _courseLogic.Update(courseDto, courseEntityId);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{courseEntityId:guid}")]
+        public IActionResult Delete([FromRoute] Guid courseEntityId)
+        {
+            _courseLogic.Delete(courseEntityId);
+
+            return NoContent();
+        }
+
     }
 }

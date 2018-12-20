@@ -2,6 +2,9 @@
 
 namespace DataAccess.ClassesManagement.Write.Implementations
 {
+    using System.Linq;
+    using System.Linq.Expressions;
+
     using DataAccess.ClassesManagement.Write.Abstractions;
 
     using Entities.ClassesManagement;
@@ -19,6 +22,12 @@ namespace DataAccess.ClassesManagement.Write.Implementations
         {
             entity.LastChangeDate = DateTime.Now;
             _context.Set<T>().Add(entity);
+        }
+
+        public T GetLastByFilter<T>(Expression<Func<T, bool>> filter)
+            where T : BaseEntity
+        {
+            return _context.Set<T>().OrderByDescending(o => o.LastChangeDate).FirstOrDefault(filter);
         }
 
         public void Save()
