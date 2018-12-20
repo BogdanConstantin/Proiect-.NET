@@ -8,8 +8,6 @@
     <Folder Include="Read\Implementations\" />
     <Folder Include="Read\Abstractions\" />
     <Folder Include="Read\Configurations\" />
-    <Folder Include="Write\Implementations\" />
-    <Folder Include="Write\Abstractions\" />
   </ItemGroup>
 
   <ItemGroup>

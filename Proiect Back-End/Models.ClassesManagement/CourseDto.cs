@@ -1,6 +1,6 @@
-﻿namespace Entities.ClassesManagement
+﻿namespace Models.ClassesManagement
 {
-    public class Course: BaseEntity
+    public class CourseDto
     {
         public string CourseTitle { get; set; }
 
