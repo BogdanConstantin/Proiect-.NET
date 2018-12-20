@@ -13,6 +13,8 @@ namespace BusinessLogic.ClassesManagement.Write.Configurations
         {
             services.AddDataAccess(connectionString);
             services.AddScoped<ICourseLogic, CourseLogic>();
+            services.AddScoped<ICourseManagementLogic, CourseManagementLogic>();
+            services.AddScoped<ILaboratoryManagementLogic, LaboratoryManagementLogic>();
         }
     }
 }
