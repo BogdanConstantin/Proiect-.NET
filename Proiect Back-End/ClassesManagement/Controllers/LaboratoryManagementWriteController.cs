@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Models.ClassesManagement;
+    using System;
 
     [Route("api/laboratory/manage")]
     [ApiController]
@@ -23,6 +24,22 @@
             _managementLogic.Create(managementDto);
 
             return Ok(managementDto);
+        }
+
+        [HttpPut("{laboratoryManagementEntityId:guid}")]
+        public IActionResult Update([FromBody] ManagementDto managementDto, [FromRoute] Guid laboratoryManagementEntityId)
+        {
+            _managementLogic.Update(managementDto, laboratoryManagementEntityId);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{laboratoryManagementEntityId:guid}")]
+        public IActionResult Delete([FromRoute] Guid laboratoryManagementEntityId)
+        {
+            _managementLogic.Delete(laboratoryManagementEntityId);
+
+            return NoContent();
         }
     }
 }
