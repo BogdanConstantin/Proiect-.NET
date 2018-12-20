@@ -3,7 +3,7 @@
     using System;
 
     using BusinessLogic.ClassesManagement.Abstractions;
-
+    using Entities.ClassesManagement;
     using Microsoft.AspNetCore.Mvc;
 
     using Models.ClassesManagement;
@@ -41,6 +41,14 @@
             _courseLogic.Delete(courseEntityId);
 
             return NoContent();
+        }
+
+        [HttpGet("{courseEntityId:guid}")]
+        public CourseDto GetById([FromRoute] Guid courseEntityId)
+        {
+            var course = _courseLogic.GetById(courseEntityId);
+          
+            return course;
         }
 
     }

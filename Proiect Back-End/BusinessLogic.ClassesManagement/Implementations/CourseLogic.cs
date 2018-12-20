@@ -62,5 +62,21 @@
             _repository.Insert(course);
             _repository.Save();
         }
+
+        public CourseDto GetById(Guid courseEntityId)
+        {
+            var course = _repository.GetLastByFilter<Course>(c => c.EntityId == courseEntityId);
+
+            var courseDto = new CourseDto
+            {
+                CourseTitle = course.CourseTitle,
+                Year = course.Year,
+                Semester = course.Semester
+            };
+
+            return courseDto;
+        }
+
+   
     }
 }
