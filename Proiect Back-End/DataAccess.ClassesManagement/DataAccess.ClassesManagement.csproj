@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Read\Abstractions\" />
-    <Folder Include="Read\Configurations\" />
-    <Folder Include="Read\Implementations\" />
+    <Compile Remove="Read\**" />
+    <EmbeddedResource Remove="Read\**" />
+    <None Remove="Read\**" />
   </ItemGroup>
 
   <ItemGroup>

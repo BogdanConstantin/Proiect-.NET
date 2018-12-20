@@ -1,5 +1,4 @@
-﻿using BusinessLogic.ClassesManagement.Write.Configurations;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +7,8 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace ClassesManagement
 {
+    using BusinessLogic.ClassesManagement.Configurations;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

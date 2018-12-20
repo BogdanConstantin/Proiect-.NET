@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities.ClassesManagement
+﻿namespace Entities.ClassesManagement
 {
     public class CourseManagement : BaseManagementEntity
     {

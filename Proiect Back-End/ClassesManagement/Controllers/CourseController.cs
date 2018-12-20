@@ -2,7 +2,7 @@
 {
     using System;
 
-    using BusinessLogic.ClassesManagement.Write.Abstractions;
+    using BusinessLogic.ClassesManagement.Abstractions;
 
     using Microsoft.AspNetCore.Mvc;
 

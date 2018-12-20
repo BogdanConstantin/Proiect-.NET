@@ -1,0 +1,10 @@
+﻿
+namespace BusinessLogic.ClassesManagement.Abstractions
+{
+    using Models.ClassesManagement;
+
+    public interface ILaboratoryManagementLogic
+    {
+        void Create(ManagementDto courseManagementDto);
+    }
+}

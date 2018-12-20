@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Read\Abstractions\" />
-    <Folder Include="Read\Configurations\" />
-    <Folder Include="Read\Implementations\" />
-    <Folder Include="Write\Abstractions\" />
-    <Folder Include="Write\Configurations\Entities\" />
-    <Folder Include="Write\Implementations\" />
+    <Compile Remove="Read\**" />
+    <EmbeddedResource Remove="Read\**" />
+    <None Remove="Read\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="Configurations\Entities\" />
+    <Folder Include="Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
