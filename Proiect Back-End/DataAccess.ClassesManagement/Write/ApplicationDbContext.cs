@@ -9,16 +9,19 @@ namespace DataAccess.ClassesManagement.Write
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
         }
 
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Laboratory> Laboratories { get; set; }
+
+        public DbSet<CourseManagement> CourseManagements { get; set; }
+        public DbSet<LaboratoryManagement> LaboratoryManagements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
-            modelBuilder.ApplyConfiguration(new LaboratoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CourseManagementConfiguration());
+            modelBuilder.ApplyConfiguration(new LaboratoryManagementConfiguration());
         }
     }
 }
