@@ -1,6 +1,8 @@
 ﻿namespace BusinessLogic.ClassesManagement.Abstractions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Entities.ClassesManagement;
     using Models.ClassesManagement;
 
@@ -13,5 +15,7 @@
         void Delete(Guid courseEntityId);
 
         CourseDto GetById(Guid courseEntityId);
+
+        IEnumerable<IGrouping<Guid, Course>> GetAll();
     }
 }

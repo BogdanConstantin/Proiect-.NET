@@ -1,6 +1,7 @@
 ﻿namespace DataAccess.ClassesManagement.Implementations
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
 
@@ -8,7 +9,7 @@
 
     using Entities.ClassesManagement;
 
-    public class Repository: IRepository
+    public class Repository : IRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -27,6 +28,12 @@
             where T : BaseEntity
         {
             return _context.Set<T>().OrderByDescending(o => o.LastChangeDate).FirstOrDefault(filter);
+        }
+
+        public IEnumerable<IGrouping<Guid, T>> GetAll<T>() where T : BaseEntity
+        {
+            return _context.Set<T>().Where(x => x.DeletedDate == null).GroupBy(x => x.EntityId).OrderByDescending(o => o.Select(grp=>grp.LastChangeDate).FirstOrDefault()).ToList();
+
         }
 
         public void Save()

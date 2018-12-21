@@ -1,7 +1,8 @@
 ﻿namespace BusinessLogic.ClassesManagement.Implementations
 {
     using System;
-
+    using System.Collections.Generic;
+    using System.Linq;
     using BusinessLogic.ClassesManagement.Abstractions;
 
     using DataAccess.ClassesManagement.Abstractions;
@@ -75,6 +76,16 @@
             };
 
             return courseDto;
+        }
+
+        public IEnumerable<IGrouping<Guid, Course>> GetAll()
+        {
+
+            var courses = _repository.GetAll<Course>();
+     
+            return courses;
+
+
         }
 
    

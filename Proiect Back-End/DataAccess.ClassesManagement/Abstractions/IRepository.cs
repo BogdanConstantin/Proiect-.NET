@@ -1,6 +1,8 @@
 ﻿namespace DataAccess.ClassesManagement.Abstractions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
 
     using Entities.ClassesManagement;
@@ -12,6 +14,9 @@
 
         T GetLastByFilter<T>(Expression<Func<T, bool>> filter)
             where T : BaseEntity;
+
+        IEnumerable<IGrouping<Guid, T>> GetAll<T>()
+           where T : BaseEntity;
 
         void Save();
     }
