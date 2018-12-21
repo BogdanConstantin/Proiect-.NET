@@ -16,6 +16,6 @@
 
         CourseDto GetById(Guid courseEntityId);
 
-        IEnumerable<IGrouping<Guid, Course>> GetAll();
+        ICollection<CourseDto> GetAll();
     }
 }

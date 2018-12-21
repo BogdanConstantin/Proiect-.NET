@@ -15,7 +15,7 @@
         T GetLastByFilter<T>(Expression<Func<T, bool>> filter)
             where T : BaseEntity;
 
-        IEnumerable<IGrouping<Guid, T>> GetAll<T>()
+        ICollection<T> GetAll<T>()
            where T : BaseEntity;
 
         void Save();

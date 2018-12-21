@@ -53,7 +53,7 @@
         }
 
         [HttpGet()]
-        public IEnumerable<IGrouping<Guid, Course>> GetAll()
+        public ICollection<CourseDto> GetAll()
         {
             var courses = _courseLogic.GetAll();
 

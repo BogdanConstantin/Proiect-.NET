@@ -30,11 +30,12 @@
             return _context.Set<T>().OrderByDescending(o => o.LastChangeDate).FirstOrDefault(filter);
         }
 
-        public IEnumerable<IGrouping<Guid, T>> GetAll<T>() where T : BaseEntity
-        {
-            return _context.Set<T>().Where(x => x.DeletedDate == null).GroupBy(x => x.EntityId).OrderByDescending(o => o.Select(grp=>grp.LastChangeDate).FirstOrDefault()).ToList();
-
-        }
+        public ICollection<T> GetAll<T>() where T : BaseEntity => _context.Set<T>()
+                .Where(x => x.DeletedDate == null)
+                .GroupBy(group => group.EntityId)
+                .Select(group => group.OrderByDescending(x => x.LastChangeDate)
+                .FirstOrDefault())
+                .ToList();
 
         public void Save()
         {
