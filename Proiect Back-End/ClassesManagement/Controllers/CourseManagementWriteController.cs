@@ -6,6 +6,7 @@ namespace ClassesManagement.Controllers
     using Microsoft.AspNetCore.Mvc;
 
     using Models.ClassesManagement;
+    using System;
 
     [Route("api/course/manage")]
     [ApiController]
@@ -24,6 +25,22 @@ namespace ClassesManagement.Controllers
             _managementLogic.Create(managementDto);
 
             return Ok(managementDto);
+        }
+
+        [HttpPut("{courseManagementEntityId:guid}")]
+        public IActionResult Update([FromBody] ManagementDto managementDto, [FromRoute] Guid courseManagementEntityId)
+        {
+            _managementLogic.Update(managementDto, courseManagementEntityId);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{courseManagementEntityId:guid}")]
+        public IActionResult Delete([FromRoute] Guid courseManagementEntityId)
+        {
+            _managementLogic.Delete(courseManagementEntityId);
+
+            return NoContent();
         }
     }
 }

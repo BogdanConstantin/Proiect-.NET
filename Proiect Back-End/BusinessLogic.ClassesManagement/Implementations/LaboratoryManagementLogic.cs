@@ -1,7 +1,5 @@
 ﻿namespace BusinessLogic.ClassesManagement.Implementations
 {
-    using System;
-
     using BusinessLogic.ClassesManagement.Abstractions;
 
     using DataAccess.ClassesManagement.Abstractions;
@@ -9,6 +7,7 @@
     using Entities.ClassesManagement;
 
     using Models.ClassesManagement;
+    using System;
 
     public class LaboratoryManagementLogic : BaseLogic, ILaboratoryManagementLogic
     {
@@ -30,6 +29,37 @@
             };
 
             _repository.Insert(newLaboratory);
+            _repository.Save();
+        }
+
+        public void Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId)
+        {
+            var laboratoryManagement = _repository.GetLastByFilter<LaboratoryManagement>(c => c.EntityId == laboratoryManagementEntityId);
+
+            if (laboratoryManagement.DeletedDate != null)
+            {
+                return;
+            }
+
+            laboratoryManagement.Id = Guid.NewGuid();
+            laboratoryManagement.AuthorId = Guid.NewGuid();
+            laboratoryManagement.ClassId = laboratoryManagementDto.ClassId;
+            laboratoryManagement.UserId = laboratoryManagementDto.UserId;
+            laboratoryManagement.UserPosition = laboratoryManagementDto.UserPosition;
+
+            _repository.Insert(laboratoryManagement);
+            _repository.Save();
+        }
+
+        public void Delete(Guid laboratoryManagementEntityId)
+        {
+            var laboratoryManagement = _repository.GetLastByFilter<LaboratoryManagement>(c => c.EntityId == laboratoryManagementEntityId);
+
+            laboratoryManagement.Id = Guid.NewGuid();
+            laboratoryManagement.AuthorId = Guid.NewGuid();
+            laboratoryManagement.DeletedDate = DateTime.Now;
+
+            _repository.Insert(laboratoryManagement);
             _repository.Save();
         }
     }
