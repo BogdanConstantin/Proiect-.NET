@@ -1,7 +1,8 @@
 ﻿namespace ClassesManagement.Controllers
 {
     using System;
-
+    using System.Collections.Generic;
+    using System.Linq;
     using BusinessLogic.ClassesManagement.Abstractions;
     using Entities.ClassesManagement;
     using Microsoft.AspNetCore.Mvc;
@@ -47,8 +48,16 @@
         public CourseDto GetById([FromRoute] Guid courseEntityId)
         {
             var course = _courseLogic.GetById(courseEntityId);
-          
+
             return course;
+        }
+
+        [HttpGet()]
+        public ICollection<CourseDto> GetAll()
+        {
+            var courses = _courseLogic.GetAll();
+
+            return courses;
         }
 
     }

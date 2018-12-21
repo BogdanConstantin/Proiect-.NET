@@ -1,7 +1,8 @@
 ﻿namespace BusinessLogic.ClassesManagement.Implementations
 {
     using System;
-
+    using System.Collections.Generic;
+    using System.Linq;
     using BusinessLogic.ClassesManagement.Abstractions;
 
     using DataAccess.ClassesManagement.Abstractions;
@@ -20,13 +21,13 @@
         public void Create(CourseDto courseDto)
         {
             var newCourse = new Course
-                                {
-                                    AuthorId = Guid.NewGuid(),
-                                    CourseTitle = courseDto.CourseTitle,
-                                    EntityId = Guid.NewGuid(),
-                                    Semester = courseDto.Semester,
-                                    Year = courseDto.Year
-                                };
+            {
+                AuthorId = Guid.NewGuid(),
+                CourseTitle = courseDto.CourseTitle,
+                EntityId = Guid.NewGuid(),
+                Semester = courseDto.Semester,
+                Year = courseDto.Year
+            };
 
             _repository.Insert(newCourse);
             _repository.Save();
@@ -77,6 +78,31 @@
             return courseDto;
         }
 
-   
+        public ICollection<CourseDto> GetAll()
+        {
+            List<CourseDto> courseDtos = new List<CourseDto>();
+
+            var courses = _repository.GetAll<Course>();
+
+            foreach (var course in courses)
+            {
+                var courseDto = new CourseDto
+                {
+                    CourseTitle = course.CourseTitle,
+                    Year = course.Year,
+                    Semester = course.Semester
+                };
+
+                courseDtos.Add(courseDto);
+
+            }
+
+
+            return courseDtos;
+
+
+        }
+
+
     }
 }
