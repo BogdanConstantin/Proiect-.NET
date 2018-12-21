@@ -32,13 +32,13 @@
             _repository.Save();
         }
 
-        public void Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId)
+        public LaboratoryManagement Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId)
         {
             var laboratoryManagement = _repository.GetLastByFilter<LaboratoryManagement>(c => c.EntityId == laboratoryManagementEntityId);
 
-            if (laboratoryManagement.DeletedDate != null)
+            if (laboratoryManagement == null || laboratoryManagement.DeletedDate != null)
             {
-                return;
+                return null;
             }
 
             laboratoryManagement.Id = Guid.NewGuid();
@@ -49,11 +49,18 @@
 
             _repository.Insert(laboratoryManagement);
             _repository.Save();
+
+            return laboratoryManagement;
         }
 
-        public void Delete(Guid laboratoryManagementEntityId)
+        public LaboratoryManagement Delete(Guid laboratoryManagementEntityId)
         {
             var laboratoryManagement = _repository.GetLastByFilter<LaboratoryManagement>(c => c.EntityId == laboratoryManagementEntityId);
+
+            if (laboratoryManagement == null || laboratoryManagement.DeletedDate != null)
+            {
+                return null;
+            }
 
             laboratoryManagement.Id = Guid.NewGuid();
             laboratoryManagement.AuthorId = Guid.NewGuid();
@@ -61,6 +68,27 @@
 
             _repository.Insert(laboratoryManagement);
             _repository.Save();
+
+            return laboratoryManagement;
+        }
+
+        public ManagementDto GetById(Guid laboratoryManagementEntityId)
+        {
+            var laboratoryManagement = _repository.GetLastByFilter<LaboratoryManagement>(c => c.EntityId == laboratoryManagementEntityId);
+
+            if (laboratoryManagement == null || laboratoryManagement.DeletedDate != null)
+            {
+                return null;
+            }
+
+            var laboratoryManagementDto = new ManagementDto
+            {
+                ClassId = laboratoryManagement.ClassId,
+                UserId = laboratoryManagement.UserId,
+                UserPosition = laboratoryManagement.UserPosition
+            };
+
+            return laboratoryManagementDto;
         }
     }
 }

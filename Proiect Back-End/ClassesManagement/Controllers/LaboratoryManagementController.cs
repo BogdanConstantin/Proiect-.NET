@@ -9,11 +9,11 @@
 
     [Route("api/laboratory/manage")]
     [ApiController]
-    public class LaboratoryManagementWriteController : ControllerBase
+    public class LaboratoryManagementController : ControllerBase
     {
         private readonly ILaboratoryManagementLogic _managementLogic;
 
-        public LaboratoryManagementWriteController(ILaboratoryManagementLogic managementLogic)
+        public LaboratoryManagementController(ILaboratoryManagementLogic managementLogic)
         {
             _managementLogic = managementLogic;
         }
@@ -29,17 +29,31 @@
         [HttpPut("{laboratoryManagementEntityId:guid}")]
         public IActionResult Update([FromBody] ManagementDto managementDto, [FromRoute] Guid laboratoryManagementEntityId)
         {
-            _managementLogic.Update(managementDto, laboratoryManagementEntityId);
+            var result = _managementLogic.Update(managementDto, laboratoryManagementEntityId);
 
-            return NoContent();
+            if (result == null)
+                return NotFound();
+            return Ok(result);
         }
 
         [HttpDelete("{laboratoryManagementEntityId:guid}")]
         public IActionResult Delete([FromRoute] Guid laboratoryManagementEntityId)
         {
-            _managementLogic.Delete(laboratoryManagementEntityId);
+            var result = _managementLogic.Delete(laboratoryManagementEntityId);
 
-            return NoContent();
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+
+        [HttpGet("{laboratoryManagementEntityId:guid}")]
+        public IActionResult GetById([FromRoute] Guid laboratoryManagementEntityId)
+        {
+            var result = _managementLogic.GetById(laboratoryManagementEntityId);
+
+            if (result == null)
+                return NotFound();
+            return Ok(result);
         }
     }
 }
