@@ -1,4 +1,8 @@
 ﻿
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+
 namespace BusinessLogic.ClassesManagement.Implementations
 {
     using System;
@@ -32,13 +36,13 @@ namespace BusinessLogic.ClassesManagement.Implementations
             _repository.Save();
         }
 
-        public void Update(ManagementDto courseManagementDto, Guid courseManagementEntityId)
+        public CourseManagement Update(ManagementDto courseManagementDto, Guid courseManagementEntityId)
         {
             var courseManagement = _repository.GetLastByFilter<CourseManagement>(c => c.EntityId == courseManagementEntityId);
 
-            if (courseManagement.DeletedDate != null)
+            if (courseManagement == null || courseManagement.DeletedDate != null)
             {
-                return;
+                return null;
             }
 
             courseManagement.Id = Guid.NewGuid();
@@ -49,11 +53,18 @@ namespace BusinessLogic.ClassesManagement.Implementations
 
             _repository.Insert(courseManagement);
             _repository.Save();
+
+            return courseManagement;
         }
 
-        public void Delete(Guid courseManagementEntityId)
+        public CourseManagement Delete(Guid courseManagementEntityId)
         {
             var courseManagement = _repository.GetLastByFilter<CourseManagement>(c => c.EntityId == courseManagementEntityId);
+
+            if (courseManagement == null || courseManagement.DeletedDate != null)
+            {
+                return null;
+            }
 
             courseManagement.Id = Guid.NewGuid();
             courseManagement.AuthorId = Guid.NewGuid();
@@ -61,6 +72,27 @@ namespace BusinessLogic.ClassesManagement.Implementations
 
             _repository.Insert(courseManagement);
             _repository.Save();
+
+            return courseManagement;
+        }
+
+        public ManagementDto GetById(Guid courseManagementEntityId)
+        {
+            var courseManagement = _repository.GetLastByFilter<CourseManagement>(c => c.EntityId == courseManagementEntityId);
+
+            if (courseManagement == null || courseManagement.DeletedDate != null)
+            {
+                return null;
+            }
+
+            var courseManagementDto = new ManagementDto
+            {
+                ClassId = courseManagement.ClassId,
+                UserId = courseManagement.UserId,
+                UserPosition = courseManagement.UserPosition
+            };
+
+            return courseManagementDto;
         }
     }
 }

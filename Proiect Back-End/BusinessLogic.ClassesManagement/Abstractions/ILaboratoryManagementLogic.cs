@@ -1,15 +1,19 @@
 ﻿
+
 namespace BusinessLogic.ClassesManagement.Abstractions
 {
     using Models.ClassesManagement;
+    using Entities.ClassesManagement;
     using System;
 
     public interface ILaboratoryManagementLogic
     {
         void Create(ManagementDto laboratoryManagementDto);
 
-        void Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId);
+        LaboratoryManagement Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId);
 
-        void Delete(Guid laboratoryManagementEntityId);
+        LaboratoryManagement Delete(Guid laboratoryManagementEntityId);
+
+        ManagementDto GetById(Guid laboratoryManagementEntityId);
     }
 }

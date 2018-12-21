@@ -1,15 +1,19 @@
 ﻿
 namespace BusinessLogic.ClassesManagement.Abstractions
 {
+    using Entities.ClassesManagement;
     using Models.ClassesManagement;
     using System;
+    using System.Collections.Generic;
 
     public interface ICourseManagementLogic
     {
         void Create(ManagementDto courseManagementDto);
 
-        void Update(ManagementDto courseManagementDto, Guid courseManagementEntityId);
+        CourseManagement Update(ManagementDto courseManagementDto, Guid courseManagementEntityId);
 
-        void Delete(Guid courseManagementEntityId);
+        CourseManagement Delete(Guid courseManagementEntityId);
+
+        ManagementDto GetById(Guid courseManagementEntityId);
     }
 }
