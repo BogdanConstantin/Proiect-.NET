@@ -94,5 +94,28 @@ namespace BusinessLogic.ClassesManagement.Implementations
 
             return courseManagementDto;
         }
+
+        public ICollection<ManagementDto> GetAll()
+        {
+            List<ManagementDto> courseManagementDtos = new List<ManagementDto>();
+
+            var courseManagements = _repository.GetAll<CourseManagement>();
+
+            foreach (var courseManagement in courseManagements)
+            {
+                var courseManagementDto = new ManagementDto
+                                    {
+                                        ClassId = courseManagement.ClassId,
+                                        UserId = courseManagement.UserId,
+                                        UserPosition = courseManagement.UserPosition
+                                    };
+
+                courseManagementDtos.Add(courseManagementDto);
+
+            }
+
+
+            return courseManagementDtos;
+        }
     }
 }

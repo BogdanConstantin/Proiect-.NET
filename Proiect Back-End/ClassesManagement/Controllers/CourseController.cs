@@ -52,7 +52,7 @@
             return course;
         }
 
-        [HttpGet()]
+        [HttpGet]
         public ICollection<CourseDto> GetAll()
         {
             var courses = _courseLogic.GetAll();

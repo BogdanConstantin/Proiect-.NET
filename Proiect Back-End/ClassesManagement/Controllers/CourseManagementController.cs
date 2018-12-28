@@ -7,6 +7,7 @@ namespace ClassesManagement.Controllers
 
     using Models.ClassesManagement;
     using System;
+    using System.Collections.Generic;
 
     [Route("api/course/manage")]
     [ApiController]
@@ -55,6 +56,14 @@ namespace ClassesManagement.Controllers
             if (result == null)
                 return NotFound();
             return Ok(result);
+        }
+
+        [HttpGet]
+        public ICollection<ManagementDto> GetAll()
+        {
+            var courseManagements = this._managementLogic.GetAll();
+
+            return courseManagements;
         }
     }
 }

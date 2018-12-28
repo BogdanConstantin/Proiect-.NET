@@ -15,5 +15,7 @@ namespace BusinessLogic.ClassesManagement.Abstractions
         CourseManagement Delete(Guid courseManagementEntityId);
 
         ManagementDto GetById(Guid courseManagementEntityId);
+
+        ICollection<ManagementDto> GetAll();
     }
 }
