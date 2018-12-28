@@ -6,6 +6,7 @@
 
     using Models.ClassesManagement;
     using System;
+    using System.Collections.Generic;
 
     [Route("api/laboratory/manage")]
     [ApiController]
@@ -54,6 +55,14 @@
             if (result == null)
                 return NotFound();
             return Ok(result);
+        }
+
+        [HttpGet]
+        public ICollection<ManagementDto> GetAll()
+        {
+            var laboratoriesManagement = _managementLogic.GetAll();
+
+            return laboratoriesManagement;
         }
     }
 }

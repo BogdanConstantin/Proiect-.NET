@@ -8,6 +8,7 @@
 
     using Models.ClassesManagement;
     using System;
+    using System.Collections.Generic;
 
     public class LaboratoryManagementLogic : BaseLogic, ILaboratoryManagementLogic
     {
@@ -89,6 +90,29 @@
             };
 
             return laboratoryManagementDto;
+        }
+
+        public ICollection<ManagementDto> GetAll()
+        {
+            List<ManagementDto> laboratoryManagementDtos = new List<ManagementDto>();
+
+            var laboratoryManagements = _repository.GetAll<LaboratoryManagement>();
+
+            foreach (var laboratoryManagement in laboratoryManagements)
+            {
+                var laboratoryManagementDto = new ManagementDto
+                                              {
+                                                  ClassId = laboratoryManagement.ClassId,
+                                                  UserId = laboratoryManagement.UserId,
+                                                  UserPosition = laboratoryManagement.UserPosition
+                                              };
+
+                laboratoryManagementDtos.Add(laboratoryManagementDto);
+
+            }
+
+
+            return laboratoryManagementDtos;
         }
     }
 }

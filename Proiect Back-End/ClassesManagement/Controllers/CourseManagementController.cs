@@ -61,9 +61,9 @@ namespace ClassesManagement.Controllers
         [HttpGet]
         public ICollection<ManagementDto> GetAll()
         {
-            var courseManagements = this._managementLogic.GetAll();
+            var coursesManagements = _managementLogic.GetAll();
 
-            return courseManagements;
+            return coursesManagements;
         }
     }
 }
