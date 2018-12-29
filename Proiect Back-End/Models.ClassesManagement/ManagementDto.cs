@@ -10,6 +10,6 @@ namespace Models.ClassesManagement
 
         public Guid UserId { get; set; }
 
-        public UserPosition UserPosition { get; set; }
+        public string UserPosition { get; set; }
     }
 }

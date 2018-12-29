@@ -25,7 +25,7 @@
                 EntityId = Guid.NewGuid(),
                 AuthorId = Guid.NewGuid(),
                 UserId = laboratoryDto.UserId,
-                UserPosition = laboratoryDto.UserPosition
+                UserPosition = (UserPosition)Enum.Parse(typeof(UserPosition), laboratoryDto.UserPosition)
                 // load managed course when read is done
             };
 
@@ -46,7 +46,7 @@
             laboratoryManagement.AuthorId = Guid.NewGuid();
             laboratoryManagement.ClassId = laboratoryManagementDto.ClassId;
             laboratoryManagement.UserId = laboratoryManagementDto.UserId;
-            laboratoryManagement.UserPosition = laboratoryManagementDto.UserPosition;
+            laboratoryManagement.UserPosition = (UserPosition)Enum.Parse(typeof(UserPosition), laboratoryManagementDto.UserPosition);
 
             _repository.Insert(laboratoryManagement);
             _repository.Save();
@@ -86,7 +86,7 @@
             {
                 ClassId = laboratoryManagement.ClassId,
                 UserId = laboratoryManagement.UserId,
-                UserPosition = laboratoryManagement.UserPosition
+                UserPosition = laboratoryManagement.UserPosition.ToString()
             };
 
             return laboratoryManagementDto;
@@ -104,7 +104,7 @@
                                               {
                                                   ClassId = laboratoryManagement.ClassId,
                                                   UserId = laboratoryManagement.UserId,
-                                                  UserPosition = laboratoryManagement.UserPosition
+                                                  UserPosition = laboratoryManagement.UserPosition.ToString()
                                               };
 
                 laboratoryManagementDtos.Add(laboratoryManagementDto);

@@ -7,7 +7,12 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace ClassesManagement
 {
+    using System;
+    using System.Linq;
+
     using BusinessLogic.ClassesManagement.Configurations;
+
+    using FluentValidation.AspNetCore;
 
     public class Startup
     {
@@ -21,7 +26,13 @@ namespace ClassesManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         { 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddFluentValidation(
+                fv =>
+                    {
+                        fv.RegisterValidatorsFromAssembly(
+                            AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(
+                                assembly => assembly.FullName.Contains("BusinessLogic.ClassesManagement")));
+                    }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>
             {

@@ -28,7 +28,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
                 EntityId = Guid.NewGuid(),
                 AuthorId = Guid.NewGuid(),
                 UserId = courseManagementDto.UserId,
-                UserPosition = courseManagementDto.UserPosition
+                UserPosition = (UserPosition)Enum.Parse(typeof(UserPosition), courseManagementDto.UserPosition)
                 // load managed course when read is done
             };
 
@@ -49,7 +49,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
             courseManagement.AuthorId = Guid.NewGuid();
             courseManagement.ClassId = courseManagementDto.ClassId;
             courseManagement.UserId = courseManagementDto.UserId;
-            courseManagement.UserPosition = courseManagementDto.UserPosition;
+            courseManagement.UserPosition = (UserPosition)Enum.Parse(typeof(UserPosition), courseManagementDto.UserPosition);
 
             _repository.Insert(courseManagement);
             _repository.Save();
@@ -89,7 +89,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
             {
                 ClassId = courseManagement.ClassId,
                 UserId = courseManagement.UserId,
-                UserPosition = courseManagement.UserPosition
+                UserPosition = courseManagement.UserPosition.ToString()
             };
 
             return courseManagementDto;
@@ -107,7 +107,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
                                     {
                                         ClassId = courseManagement.ClassId,
                                         UserId = courseManagement.UserId,
-                                        UserPosition = courseManagement.UserPosition
+                                        UserPosition = courseManagement.UserPosition.ToString()
                                     };
 
                 courseManagementDtos.Add(courseManagementDto);
