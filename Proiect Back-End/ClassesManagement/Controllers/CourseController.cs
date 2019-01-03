@@ -2,15 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using BusinessLogic.ClassesManagement.Abstractions;
-    using Entities.ClassesManagement;
     using Microsoft.AspNetCore.Mvc;
 
     using Models.ClassesManagement;
 
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/course")]
+    [Route("api/v{version:apiVersion}/courses")]
     public class CourseController : ControllerBase
     {
         private readonly ICourseLogic _courseLogic;
@@ -31,25 +30,40 @@
         [HttpPut("{courseEntityId:guid}")]
         public IActionResult Update([FromBody] CourseDto courseDto, [FromRoute] Guid courseEntityId)
         {
-            _courseLogic.Update(courseDto, courseEntityId);
+            var result = _courseLogic.Update(courseDto, courseEntityId);
 
-            return NoContent();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete("{courseEntityId:guid}")]
         public IActionResult Delete([FromRoute] Guid courseEntityId)
         {
-            _courseLogic.Delete(courseEntityId);
+            var result = _courseLogic.Delete(courseEntityId);
 
-            return NoContent();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpGet("{courseEntityId:guid}")]
-        public CourseDto GetById([FromRoute] Guid courseEntityId)
+        public IActionResult GetById([FromRoute] Guid courseEntityId)
         {
-            var course = _courseLogic.GetById(courseEntityId);
+            var result = _courseLogic.GetById(courseEntityId);
 
-            return course;
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         [HttpGet]

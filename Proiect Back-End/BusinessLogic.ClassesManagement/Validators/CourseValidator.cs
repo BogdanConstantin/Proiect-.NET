@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BusinessLogic.ClassesManagement.Validators
+﻿namespace BusinessLogic.ClassesManagement.Validators
 {
     using FluentValidation;
-    using FluentValidation.Results;
 
     using Models.ClassesManagement;
 

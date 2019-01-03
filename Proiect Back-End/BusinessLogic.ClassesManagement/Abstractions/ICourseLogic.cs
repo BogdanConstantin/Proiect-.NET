@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Entities.ClassesManagement;
     using Models.ClassesManagement;
 
@@ -10,9 +9,9 @@
     {
         void Create(CourseDto courseDto);
 
-        void Update(CourseDto courseDto, Guid courseEntityId);
+        Course Update(CourseDto courseDto, Guid courseEntityId);
 
-        void Delete(Guid courseEntityId);
+        Course Delete(Guid courseEntityId);
 
         CourseDto GetById(Guid courseEntityId);
 

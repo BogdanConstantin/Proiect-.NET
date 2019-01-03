@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using BusinessLogic.ClassesManagement.Abstractions;
 
     using DataAccess.ClassesManagement.Abstractions;
@@ -33,13 +32,13 @@
             _repository.Save();
         }
 
-        public void Update(CourseDto courseDto, Guid courseEntityId)
+        public Course Update(CourseDto courseDto, Guid courseEntityId)
         {
             var course = _repository.GetLastByFilter<Course>(c => c.EntityId == courseEntityId);
 
             if (course.DeletedDate != null)
             {
-                return;
+                return null;
             }
 
             course.Id = Guid.NewGuid();
@@ -50,9 +49,11 @@
 
             _repository.Insert(course);
             _repository.Save();
+
+            return course;
         }
 
-        public void Delete(Guid courseEntityId)
+        public Course Delete(Guid courseEntityId)
         {
             var course = _repository.GetLastByFilter<Course>(c => c.EntityId == courseEntityId);
 
@@ -62,6 +63,8 @@
 
             _repository.Insert(course);
             _repository.Save();
+
+            return course;
         }
 
         public CourseDto GetById(Guid courseEntityId)
