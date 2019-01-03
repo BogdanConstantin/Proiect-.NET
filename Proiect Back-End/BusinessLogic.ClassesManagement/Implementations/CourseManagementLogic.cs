@@ -1,7 +1,5 @@
 ﻿
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace BusinessLogic.ClassesManagement.Implementations
 {

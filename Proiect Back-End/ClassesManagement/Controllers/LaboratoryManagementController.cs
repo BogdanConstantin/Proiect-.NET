@@ -8,8 +8,10 @@
     using System;
     using System.Collections.Generic;
 
-    [Route("api/laboratory/manage")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/laboratories/manage")]
+    
     public class LaboratoryManagementController : ControllerBase
     {
         private readonly ILaboratoryManagementLogic _managementLogic;
@@ -33,7 +35,9 @@
             var result = _managementLogic.Update(managementDto, laboratoryManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
             return Ok(result);
         }
 
@@ -43,7 +47,9 @@
             var result = _managementLogic.Delete(laboratoryManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
             return Ok(result);
         }
 
@@ -53,7 +59,10 @@
             var result = _managementLogic.GetById(laboratoryManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
+
             return Ok(result);
         }
 

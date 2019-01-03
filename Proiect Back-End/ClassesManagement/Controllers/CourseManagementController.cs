@@ -9,7 +9,8 @@ namespace ClassesManagement.Controllers
     using System;
     using System.Collections.Generic;
 
-    [Route("api/course/manage")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/courses/manage")]
     [ApiController]
     public class CourseManagementController : ControllerBase
     {

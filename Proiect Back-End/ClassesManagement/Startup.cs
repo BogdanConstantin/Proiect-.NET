@@ -13,6 +13,7 @@ namespace ClassesManagement
     using BusinessLogic.ClassesManagement.Configurations;
 
     using FluentValidation.AspNetCore;
+    using Microsoft.AspNetCore.Mvc.Versioning;
 
     public class Startup
     {
@@ -40,6 +41,8 @@ namespace ClassesManagement
             });
 
             services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
+            services.AddApiVersioning(o => o.ApiVersionReader = new HeaderApiVersionReader("api-version"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

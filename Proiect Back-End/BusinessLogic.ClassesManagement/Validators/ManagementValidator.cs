@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BusinessLogic.ClassesManagement.Validators
+﻿namespace BusinessLogic.ClassesManagement.Validators
 {
-    using System.Text.RegularExpressions;
 
     using DataAccess.ClassesManagement.Abstractions;
-
-    using Entities.ClassesManagement;
 
     using FluentValidation;
     using FluentValidation.Results;

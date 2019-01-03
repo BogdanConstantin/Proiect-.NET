@@ -1,7 +1,5 @@
 ﻿using System;
 
-using Entities.ClassesManagement;
-
 namespace Models.ClassesManagement
 {
     public class ManagementDto
