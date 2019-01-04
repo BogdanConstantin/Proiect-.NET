@@ -4,8 +4,8 @@ namespace Entities.Notifications
 {
     public class BaseEntity
     {
-        private Guid Id { get; set; }
+        public Guid Id { get; set; }
 
-        private Guid? AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
     }
 }

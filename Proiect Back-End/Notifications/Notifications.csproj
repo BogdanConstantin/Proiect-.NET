@@ -17,4 +17,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic.Notifications\BusinessLogic.Notifications.csproj" />
+  </ItemGroup>
+
 </Project>

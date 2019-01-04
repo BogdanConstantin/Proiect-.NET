@@ -7,6 +7,8 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace Notifications
 {
+    using BusinessLogic.Notifications.Configurations;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -25,6 +27,8 @@ namespace Notifications
             {
                 c.SwaggerDoc("v1", new Info { Title = "Notification API", Version = "v1" });
             });
+
+            services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

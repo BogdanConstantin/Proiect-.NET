@@ -6,6 +6,8 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Notifications.Implementations
 {
+    using System.Linq;
+
     public class Repository : IRepository
     {
         private readonly ApplicationDbContext _context;
@@ -14,20 +16,22 @@ namespace DataAccess.Notifications.Implementations
         {
             _context = context;
         }
+
         public void Insert<T>(T entity)
             where T : BaseEntity
-        {}
+        {
+            _context.Set<T>().Add(entity);
+        }
 
         public T GetLastByFilter<T>(Expression<Func<T, bool>> filter)
             where T : BaseEntity
         {
-            return null;
-
+            return _context.Set<T>().FirstOrDefault(filter);
         }
 
         public ICollection<T> GetAll<T>() where T : BaseEntity
         {
-            return null;
+            return _context.Set<T>().ToList();
         }
 
         public void Save()
