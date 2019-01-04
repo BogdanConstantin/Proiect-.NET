@@ -1,6 +1,6 @@
 ﻿namespace Models.Notification
 {
-    public class Class1
+    public abstract class BaseDto
     {
     }
 }

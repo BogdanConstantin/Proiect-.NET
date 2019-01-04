@@ -9,6 +9,8 @@ namespace Notifications
 {
     using BusinessLogic.Notifications.Configurations;
 
+    using Microsoft.AspNetCore.Mvc.Versioning;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -29,6 +31,7 @@ namespace Notifications
             });
 
             services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
+            services.AddApiVersioning(o => o.ApiVersionReader = new HeaderApiVersionReader("api-version"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

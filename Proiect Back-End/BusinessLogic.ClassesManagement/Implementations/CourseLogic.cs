@@ -97,15 +97,9 @@
                 };
 
                 courseDtos.Add(courseDto);
-
             }
 
-
             return courseDtos;
-
-
         }
-
-
     }
 }

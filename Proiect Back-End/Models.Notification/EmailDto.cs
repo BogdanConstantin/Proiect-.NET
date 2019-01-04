@@ -1,6 +1,6 @@
-﻿namespace Entities.Notifications
+﻿namespace Models.Notification
 {
-    public class Email : BaseEntity
+    public class EmailDto
     {
         public string Subject { get; set; }
 
