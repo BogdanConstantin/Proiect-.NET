@@ -3,6 +3,7 @@ using DataAccess.ClassesManagement.Abstractions;
 using Entities.ClassesManagement;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models.ClassesManagement;
 using Moq;
 
 namespace BusinessLogicTests
@@ -16,9 +17,14 @@ namespace BusinessLogicTests
 
         private CourseManagement management;
 
+        private CourseDto courseDto;
+
+        private int? nullexp;
+
         [TestInitialize]
         public void TestInitialize()
-        {
+        {            
+            _repositoryMock = new Mock<IRepository>();
             _validator = new CourseValidator();
         }
         
@@ -26,12 +32,6 @@ namespace BusinessLogicTests
         public void When_SemesterIs8_Then_ShouldHaveValidationError()
         {
             _validator.ShouldHaveValidationErrorFor(p => p.Semester, 8);
-
-        }
-
-        public void When_SemesterIsNull_Then_ShouldHaveValidationError()
-        {
-            _validator.ShouldHaveValidationErrorFor(p => p.Semester, null);
 
         }
 
@@ -47,12 +47,6 @@ namespace BusinessLogicTests
         {
             _validator.ShouldHaveValidationErrorFor(p => p.Year, 4);
         }
-
-        //[TestMethod]
-        //public void When_YearIsNull_Then_ShouldHaveValidationError()
-        //{
-        //    _validator.ShouldHaveValidationErrorFor(p => p.Year, null);
-        //}
 
         [TestMethod]
         public void When_YearIsNotNull_Then_ShouldNotHaveValidationError()
