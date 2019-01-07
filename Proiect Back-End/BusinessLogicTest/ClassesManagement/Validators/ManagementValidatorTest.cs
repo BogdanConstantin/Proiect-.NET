@@ -1,15 +1,11 @@
 ﻿using BusinessLogic.ClassesManagement.Validators;
 using DataAccess.ClassesManagement.Abstractions;
-using FluentValidation;
-using FluentValidation.Results;
+using Entities.ClassesManagement;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models.ClassesManagement;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 
 namespace BusinessLogicTest.ClassesManagement.Validators
 {
@@ -19,18 +15,28 @@ namespace BusinessLogicTest.ClassesManagement.Validators
     {
         private Mock<IRepository> _repositoryMock;
         private ManagementValidator _validator;
-        //private Mock<BaseValidator> _managementMock;
-        private Mock<ValidationContext<ManagementDto>> validationContext;
-        private Mock<ValidationResult> result;
+        private Guid guid;
 
         [TestInitialize]
         public void TestInitialize()
         {
-           // _managementMock = new Mock<BaseValidator>();
-            validationContext = new Mock<ValidationContext<ManagementDto>>();
-            result = new Mock<ValidationResult>();
+            guid = new Guid("b1241703-8841-4c90-a5be-cad13804af15");
             _repositoryMock = new Mock<IRepository>();
             _validator = new ManagementValidator(_repositoryMock.Object);
+            _repositoryMock.Setup(p =>
+                p.GetLastByFilter(It.IsAny<Expression<Func<Course, bool>>>()))
+                .Returns(new Course
+                {
+                    Id = guid
+                });
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            _repositoryMock = null;
+            _validator = null;
+            guid = Guid.Empty;
         }
 
         [TestMethod]
@@ -41,8 +47,8 @@ namespace BusinessLogicTest.ClassesManagement.Validators
 
         [TestMethod]
         public void When_ClassIdIsValid_Then_ShouldNotHaveValidationError()
-        {           
-            _validator.ShouldNotHaveValidationErrorFor(p => p.ClassId, Guid.NewGuid());
+        {
+            _validator.ShouldNotHaveValidationErrorFor(p => p.ClassId, guid);
         }
 
         [TestMethod]
@@ -54,7 +60,7 @@ namespace BusinessLogicTest.ClassesManagement.Validators
         [TestMethod]
         public void When_UserIdIsValid_Then_ShouldNotHaveValidationError()
         {
-            var guid = new Guid("52523f49-870d-4371-96fa-a7015e888ae6");
+
             _validator.ShouldNotHaveValidationErrorFor(p => p.UserId, guid);
         }
 
@@ -67,9 +73,8 @@ namespace BusinessLogicTest.ClassesManagement.Validators
         [TestMethod]
         public void When_UserPositionIsInvalid_Then_ShouldHaveValidationError()
         {
-            _validator.ShouldHaveValidationErrorFor(p => p.UserPosition, "Invalid");
+            _validator.ShouldHaveValidationErrorFor(p => p.UserPosition, "InvalidUserPosition");
         }
-
 
         [TestMethod]
         public void When_UserPositionIsEmpty_Then_ShouldHaveValidationError()
@@ -82,8 +87,5 @@ namespace BusinessLogicTest.ClassesManagement.Validators
         {
             _validator.ShouldHaveValidationErrorFor(p => p.UserPosition, (string)null);
         }
-
-
-
     }
 }
