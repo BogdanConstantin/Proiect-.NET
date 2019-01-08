@@ -1,4 +1,7 @@
-﻿namespace DataAccess.FilesHandler
+﻿using DataAccess.FilesHandler.Configurations.Entities;
+using Entities.FilesHandler;
+
+namespace DataAccess.FilesHandler
 {
     using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +13,11 @@
 
         }
 
+        public DbSet<File> Files { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new FileConfiguration());
         }
     }
 }
