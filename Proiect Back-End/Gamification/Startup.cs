@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BusinessLogic.Gamification.Configurations;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -25,6 +27,9 @@ namespace Gamification
             {
                 c.SwaggerDoc("v1", new Info { Title = "Gamification API", Version = "v1" });
             });
+
+            services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
+            services.AddApiVersioning(o => o.ApiVersionReader = new HeaderApiVersionReader("api-version"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
