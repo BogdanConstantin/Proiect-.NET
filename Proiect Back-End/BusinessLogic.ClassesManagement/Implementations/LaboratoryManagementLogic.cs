@@ -17,7 +17,7 @@
         {
         }
 
-        public void Create(ManagementDto laboratoryDto)
+        public LaboratoryManagement Create(ManagementDto laboratoryDto)
         {
             var newLaboratory = new LaboratoryManagement()
             {
@@ -31,6 +31,8 @@
 
             _repository.Insert(newLaboratory);
             _repository.Save();
+
+            return newLaboratory;
         }
 
         public LaboratoryManagement Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId)

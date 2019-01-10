@@ -24,10 +24,16 @@
         [HttpPost]
         public IActionResult Create([FromBody] ManagementDto managementDto)
         {
-            _managementLogic.Create(managementDto);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Ok(managementDto);
-        }
+            var newLaboratoryManagement = _managementLogic.Create(managementDto);
+
+            return CreatedAtAction(nameof(GetById), new { LaboratoryManagementEntityId = newLaboratoryManagement.EntityId }, managementDto);
+
+                    }
 
         [HttpPut("{laboratoryManagementEntityId:guid}")]
         public IActionResult Update([FromBody] ManagementDto managementDto, [FromRoute] Guid laboratoryManagementEntityId)

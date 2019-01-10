@@ -8,7 +8,7 @@ namespace BusinessLogic.ClassesManagement.Abstractions
 
     public interface ICourseManagementLogic
     {
-        void Create(ManagementDto courseManagementDto);
+        CourseManagement Create(ManagementDto courseManagementDto);
 
         CourseManagement Update(ManagementDto courseManagementDto, Guid courseManagementEntityId);
 
