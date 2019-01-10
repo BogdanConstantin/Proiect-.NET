@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace BusinessLogic.Notifications.Implementations
 {
@@ -20,6 +23,7 @@ namespace BusinessLogic.Notifications.Implementations
 
         public void Create(EmailDto emailDto)
         {
+            SendEmail(emailDto.Receiver, emailDto.Subject, emailDto.Body);
             var newEmail = new Email
                                {
                                    AuthorId = Guid.NewGuid(),
@@ -65,6 +69,25 @@ namespace BusinessLogic.Notifications.Implementations
             }
 
             return emailDtos;
+        }
+
+        public void SendEmail(string receiver, string subject, string body)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "127.0.0.1";
+            client.Port = 1925;
+            client.EnableSsl = false;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("bogadn1997@gmail.com", "ronaldo97!!!");
+            MailMessage mail = new MailMessage("bogadn1997@gmail.com", receiver);
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.BodyEncoding = UTF8Encoding.UTF8;
+            mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            client.Send(mail);
+            mail.Dispose();
         }
     }
 }

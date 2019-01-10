@@ -20,7 +20,7 @@
     "ClassesManagement": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/course",
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
