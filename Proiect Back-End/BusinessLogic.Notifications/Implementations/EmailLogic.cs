@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BusinessLogic.Notifications.Implementations
 {
-    using BusinessLogic.Notifications.Abstractions;
+    using Abstractions;
 
     using DataAccess.Notifications.Abstractions;
 
@@ -21,7 +21,7 @@ namespace BusinessLogic.Notifications.Implementations
         {
         }
 
-        public void Create(EmailDto emailDto)
+        public Email Create(EmailDto emailDto)
         {
             SendEmail(emailDto.Receiver, emailDto.Subject, emailDto.Body);
             var newEmail = new Email
@@ -34,6 +34,8 @@ namespace BusinessLogic.Notifications.Implementations
 
             _repository.Insert(newEmail);
             _repository.Save();
+
+            return newEmail;
         }
 
         public EmailDto GetById(Guid emailId)
@@ -84,7 +86,7 @@ namespace BusinessLogic.Notifications.Implementations
             MailMessage mail = new MailMessage("bogadn1997@gmail.com", receiver);
             mail.Subject = subject;
             mail.Body = body;
-            mail.BodyEncoding = UTF8Encoding.UTF8;
+            mail.BodyEncoding = Encoding.UTF8;
             mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
             client.Send(mail);
             mail.Dispose();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Notifications;
 
 namespace BusinessLogic.Notifications.Abstractions
 {
@@ -7,7 +8,7 @@ namespace BusinessLogic.Notifications.Abstractions
 
     public interface IEmailLogic
     {
-        void Create(EmailDto emailDto);
+        Email Create(EmailDto emailDto);
 
         EmailDto GetById(Guid emailId);
 

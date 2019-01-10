@@ -1,7 +1,7 @@
 ﻿namespace DataAccess.Notifications.Configurations
 {
-    using DataAccess.Notifications.Abstractions;
-    using DataAccess.Notifications.Implementations;
+    using Abstractions;
+    using Implementations;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

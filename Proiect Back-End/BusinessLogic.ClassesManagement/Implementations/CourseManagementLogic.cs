@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace BusinessLogic.ClassesManagement.Implementations
 {
     using System;
-    using BusinessLogic.ClassesManagement.Abstractions;
+    using Abstractions;
     using DataAccess.ClassesManagement.Abstractions;
 
     using Entities.ClassesManagement;

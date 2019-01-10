@@ -1,7 +1,7 @@
 ﻿namespace BusinessLogic.Notifications.Configurations
 {
-    using BusinessLogic.Notifications.Abstractions;
-    using BusinessLogic.Notifications.Implementations;
+    using Abstractions;
+    using Implementations;
 
     using DataAccess.Notifications.Configurations;
 
