@@ -18,7 +18,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
         {
         }
 
-        public void Create(ManagementDto courseManagementDto)
+        public CourseManagement Create(ManagementDto courseManagementDto)
         {
             var newCourse = new CourseManagement()
             {
@@ -32,6 +32,8 @@ namespace BusinessLogic.ClassesManagement.Implementations
 
             _repository.Insert(newCourse);
             _repository.Save();
+
+            return newCourse;
         }
 
         public CourseManagement Update(ManagementDto courseManagementDto, Guid courseManagementEntityId)
