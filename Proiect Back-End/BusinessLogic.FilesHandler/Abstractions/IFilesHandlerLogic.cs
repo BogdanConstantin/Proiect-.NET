@@ -2,22 +2,26 @@
 namespace BusinessLogic.FilesHandler.Abstractions
 {
     using Entities.FilesHandler;
+    using Microsoft.AspNetCore.Http;
     using Models.FilesHandler;
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IFilesHandlerLogic
     {
-        void Create(FileDto fileDto);
+        Task<Object> UploadFiles(Guid courseId, List<IFormFile> files);
 
-        File Update(FileDto fileDto, Guid fileEntityId);
+        void CreateMetadata(FileMetadataDto fileMetadataDto);
 
-        File Delete(Guid fileEntityId);
+        FileMetadata UpdateMetadata(FileMetadataDto fileMetadataDto, Guid fileEntityId);
 
-        FileDto GetById(Guid fileEntityId);
+        FileMetadata DeleteMetadata(Guid fileEntityId);
 
-        ICollection<FileDto> GetByCourseId(Guid courseEntityId);
+        FileMetadataDto GetMetadataById(Guid fileEntityId);
 
-        ICollection<FileDto> GetAll();
+        ICollection<FileMetadataDto> GetMetadataByCourseId(Guid courseEntityId);
+
+        ICollection<FileMetadataDto> GetAllMetadata();
     }
 }

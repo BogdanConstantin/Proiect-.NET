@@ -4,16 +4,20 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class FileConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<File>
+    public class FileConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<FileMetadata>
     {
-        public void Configure(EntityTypeBuilder<File> builder)
+        public void Configure(EntityTypeBuilder<FileMetadata> builder)
         {
             base.Configure(builder);
 
             builder.Property(p => p.Path)
                 .IsRequired();
 
-            builder.HasOne(f => f.Course).WithMany().HasForeignKey(f => f.CourseId);
+            builder.Property(p => p.FileName)
+                .IsRequired();
+
+            builder.Property(p => p.CourseId)
+                .IsRequired();
         }
     }
 }

@@ -2,7 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
     using BusinessLogic.FilesHandler.Abstractions;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     using Models.FilesHandler;
@@ -19,18 +23,22 @@
             _filesHandlerLogic = filesHandlerLogic;
         }
 
-        [HttpPost]
-        public IActionResult Create([FromBody] FileDto fileDto)
+        [HttpGet("{courseEntityId:guid}/upload")]
+        public ActionResult UploadPage(List<IFormFile> files)
         {
-            _filesHandlerLogic.Create(fileDto);
+            return File("~/UploadPage.html", "text/html");
+        }
 
-            return Ok(fileDto);
+        [HttpPost("{courseEntityId:guid}/upload")]
+        public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseEntityId, List<IFormFile> files)
+        {
+            return Ok(await _filesHandlerLogic.UploadFiles(courseEntityId, files));
         }
 
         [HttpPut("fileId={fileEntityId:guid}")]
-        public IActionResult Update([FromBody] FileDto fileDto, [FromRoute] Guid fileEntityId)
+        public IActionResult Update([FromBody] FileMetadataDto fileMetadataDto, [FromRoute] Guid fileEntityId)
         {
-            var result = _filesHandlerLogic.Update(fileDto, fileEntityId);
+            var result = _filesHandlerLogic.UpdateMetadata(fileMetadataDto, fileEntityId);
 
             if (result == null)
             {
@@ -43,7 +51,7 @@
         [HttpDelete("fileId={fileEntityId:guid}")]
         public IActionResult Delete([FromRoute] Guid fileEntityId)
         {
-            var result = _filesHandlerLogic.Delete(fileEntityId);
+            var result = _filesHandlerLogic.DeleteMetadata(fileEntityId);
 
             if (result == null)
             {
@@ -54,22 +62,27 @@
         }
 
         [HttpGet("fileId={fileEntityId:guid}")]
-        public IActionResult GetById([FromRoute] Guid fileEntityId)
+        public async Task<IActionResult> GetById([FromRoute] Guid fileEntityId)
         {
-            var result = _filesHandlerLogic.GetById(fileEntityId);
+            var metadata = _filesHandlerLogic.GetMetadataById(fileEntityId);
 
-            if (result == null)
+            if (metadata == null)
             {
                 return NotFound();
             }
 
-            return Ok(result);
+            Stream stream = new FileStream(metadata.Path + metadata.FileName, FileMode.Open);
+
+            if (stream == null)
+                return NotFound();
+
+            return File(stream, "application/octet-stream", metadata.FileName);
         }
 
         [HttpGet("courseId={courseEntityId:guid}")]
         public IActionResult GetByCourseId([FromRoute] Guid courseEntityId)
         {
-            var result = _filesHandlerLogic.GetByCourseId(courseEntityId);
+            var result = _filesHandlerLogic.GetMetadataByCourseId(courseEntityId);
 
             if (result == null)
             {
@@ -80,9 +93,9 @@
         }
 
         [HttpGet]
-        public ICollection<FileDto> GetAll()
+        public ICollection<FileMetadataDto> GetAll()
         {
-            var result = _filesHandlerLogic.GetAll();
+            var result = _filesHandlerLogic.GetAllMetadata();
 
             return result;
         }

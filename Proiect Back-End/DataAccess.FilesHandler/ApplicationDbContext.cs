@@ -13,7 +13,7 @@ namespace DataAccess.FilesHandler
 
         }
 
-        public DbSet<File> Files { get; set; }
+        public DbSet<FileMetadata> Files { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

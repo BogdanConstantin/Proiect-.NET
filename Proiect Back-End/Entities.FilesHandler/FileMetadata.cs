@@ -3,10 +3,10 @@ using System;
 
 namespace Entities.FilesHandler
 {
-    public class File : BaseEntity
+    public class FileMetadata : BaseEntity
     {
-        public Course Course { get; set; }
         public Guid CourseId { get; set; }
+        public string FileName { get; set; }
         public string Path { get; set; }
     }
 }

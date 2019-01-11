@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using BusinessLogic.ClassesManagement.Implementations;
 using BusinessLogic.FilesHandler.Abstractions;
 using DataAccess.FilesHandler.Abstractions;
 using Entities.FilesHandler;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Models.FilesHandler;
 
 namespace BusinessLogic.FilesHandler.Implementations
@@ -16,23 +21,80 @@ namespace BusinessLogic.FilesHandler.Implementations
         {
         }
 
-        public void Create(FileDto fileDto)
+        public async Task<Object> UploadFiles(Guid courseId, List<IFormFile> files)
         {
-            var newCourse = new File
+            // full path to file in temp location
+            List<FileMetadataDto> result = new List<FileMetadataDto>();
+
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    var filePath = Path.GetTempFileName();
+
+                    // copy files to temp location for checking
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+
+                    // check if files valid
+                    // if (...)
+
+                    // create folder if it doesn't exists
+                    if (!Directory.Exists("../files/" + courseId.ToString() + "/"))
+                    {
+                        Directory.CreateDirectory("../files/" + courseId.ToString() + "/");
+                    }
+
+                    var path = "../files/" + courseId.ToString() + "/";
+                    // download files to server folder
+                    using (var stream = new FileStream(path + formFile.FileName, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+
+                    // create metadatas
+                    var aux = new FileMetadataDto
+                    {
+                        CourseId = courseId,
+                        Path = path,
+                        FileName = formFile.FileName
+                    };
+
+                    CreateMetadata(aux);
+
+                    result.Add(aux);
+
+                    // delete temp files after processing
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public void CreateMetadata(FileMetadataDto fileMetadataDto)
+        {
+            var newCourse = new FileMetadata
             {
                 AuthorId = Guid.NewGuid(),
                 EntityId = Guid.NewGuid(),
-                CourseId = fileDto.CourseId,
-                Path = fileDto.Path
+                CourseId = fileMetadataDto.CourseId,
+                Path = fileMetadataDto.Path,
+                FileName = fileMetadataDto.FileName
             };
 
             _repository.Insert(newCourse);
             _repository.Save();
         }
 
-        public File Update(FileDto fileDto, Guid fileEntityId)
+        public FileMetadata UpdateMetadata(FileMetadataDto fileMetadataDto, Guid fileEntityId)
         {
-            var file = _repository.GetLastByFilter<File>(c => c.EntityId == fileEntityId);
+            var file = _repository.GetLastByFilter<FileMetadata>(c => c.EntityId == fileEntityId);
 
             if (file.DeletedDate != null)
             {
@@ -41,8 +103,8 @@ namespace BusinessLogic.FilesHandler.Implementations
 
             file.Id = Guid.NewGuid();
             file.AuthorId = Guid.NewGuid();
-            file.CourseId = fileDto.CourseId;
-            file.Path = fileDto.Path;
+            file.CourseId = fileMetadataDto.CourseId;
+            file.Path = fileMetadataDto.Path;
 
             _repository.Insert(file);
             _repository.Save();
@@ -50,9 +112,9 @@ namespace BusinessLogic.FilesHandler.Implementations
             return file;
         }
 
-        public File Delete(Guid fileEntityId)
+        public FileMetadata DeleteMetadata(Guid fileEntityId)
         {
-            var file = _repository.GetLastByFilter<File>(f => f.EntityId == fileEntityId);
+            var file = _repository.GetLastByFilter<FileMetadata>(f => f.EntityId == fileEntityId);
 
             file.Id = Guid.NewGuid();
             file.AuthorId = Guid.NewGuid();
@@ -61,36 +123,43 @@ namespace BusinessLogic.FilesHandler.Implementations
             _repository.Insert(file);
             _repository.Save();
 
+            if (File.Exists(file.Path + file.FileName))
+            {
+                File.Delete(file.Path + file.FileName);
+            }
+
             return file;
         }
 
-        public FileDto GetById(Guid fileEntityId)
+        public FileMetadataDto GetMetadataById(Guid fileEntityId)
         {
-            var file = _repository.GetLastByFilter<File>(f => f.EntityId == fileEntityId);
+            var file = _repository.GetLastByFilter<FileMetadata>(f => f.EntityId == fileEntityId);
 
-            var fileDto = new FileDto
+            var fileDto = new FileMetadataDto
             {
                 CourseId = file.CourseId,
-                Path = file.Path
+                Path = file.Path,
+                FileName = file.FileName
             };
 
             return fileDto;
         }
 
-        public ICollection<FileDto> GetByCourseId(Guid courseEntityId)
+        public ICollection<FileMetadataDto> GetMetadataByCourseId(Guid courseEntityId)
         {
-            List<FileDto> fileDtos = new List<FileDto>();
+            List<FileMetadataDto> fileDtos = new List<FileMetadataDto>();
 
-            var files = _repository.GetAll<File>();
+            var files = _repository.GetAll<FileMetadata>();
 
             foreach (var file in files)
             {
                 if (file.CourseId == courseEntityId)
                 {
-                    var fileDto = new FileDto
+                    var fileDto = new FileMetadataDto
                     {
                         CourseId = file.CourseId,
-                        Path = file.Path
+                        Path = file.Path,
+                        FileName = file.FileName
                     };
 
                     fileDtos.Add(fileDto);
@@ -100,18 +169,19 @@ namespace BusinessLogic.FilesHandler.Implementations
             return fileDtos;
         }
 
-        public ICollection<FileDto> GetAll()
+        public ICollection<FileMetadataDto> GetAllMetadata()
         {
-            List<FileDto> fileDtos = new List<FileDto>();
+            List<FileMetadataDto> fileDtos = new List<FileMetadataDto>();
 
-            var files = _repository.GetAll<File>();
+            var files = _repository.GetAll<FileMetadata>();
 
             foreach (var file in files)
             {
-                var fileDto = new FileDto
+                var fileDto = new FileMetadataDto
                 {
                     CourseId = file.CourseId,
-                    Path = file.Path
+                    Path = file.Path,
+                    FileName = file.FileName
                 };
 
                 fileDtos.Add(fileDto);
