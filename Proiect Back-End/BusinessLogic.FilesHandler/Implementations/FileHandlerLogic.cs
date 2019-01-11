@@ -39,42 +39,95 @@ namespace BusinessLogic.FilesHandler.Implementations
                     }
 
                     // check if files valid
-                    // if (...)
-
-                    // create folder if it doesn't exists
-                    if (!Directory.Exists("../files/" + courseId.ToString() + "/"))
+                    if (await CheckFileValid(filePath))
                     {
-                        Directory.CreateDirectory("../files/" + courseId.ToString() + "/");
-                    }
+                        // create folder if it doesn't exists
+                        if (!Directory.Exists("../files/" + courseId.ToString() + "/"))
+                        {
+                            Directory.CreateDirectory("../files/" + courseId.ToString() + "/");
+                        }
 
-                    var path = "../files/" + courseId.ToString() + "/";
-                    // download files to server folder
-                    using (var stream = new FileStream(path + formFile.FileName, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
+                        var path = "../files/" + courseId.ToString() + "/";
+                        // download files to server folder
+                        using (var stream = new FileStream(path + formFile.FileName, FileMode.Create))
+                        {
+                            await formFile.CopyToAsync(stream);
+                        }
 
-                    // create metadatas
-                    var aux = new FileMetadataDto
-                    {
-                        CourseId = courseId,
-                        Path = path,
-                        FileName = formFile.FileName
-                    };
+                        // create metadatas
+                        var aux = new FileMetadataDto
+                        {
+                            CourseId = courseId,
+                            Path = path,
+                            FileName = formFile.FileName
+                        };
 
-                    CreateMetadata(aux);
+                        CreateMetadata(aux);
 
-                    result.Add(aux);
+                        result.Add(aux);
 
-                    // delete temp files after processing
-                    if (File.Exists(filePath))
-                    {
-                        File.Delete(filePath);
+                        // delete temp files after processing
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(filePath);
+                        }
                     }
                 }
             }
 
             return result;
+        }
+
+        public async Task<bool> CheckFileValid(string filePath)
+        {
+            if (filePath == null)
+                return false;
+
+            byte[] BMP = { 66, 77 };
+            byte[] DOC = { 208, 207, 17, 224, 161, 177, 26, 225 };
+            byte[] JPG = { 255, 216, 255 };
+            byte[] PDF = { 37, 80, 68, 70, 45 };
+            byte[] PNG = { 137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82 };
+            byte[] RAR = { 82, 97, 114, 33, 26, 7, 0 };
+            byte[] ZIP_DOCX = { 80, 75, 3, 4 };
+
+            FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(stream);
+            byte[] file = null;
+            file = reader.ReadBytes(32);
+            reader.Close();
+            stream.Close();
+
+            if (file.Take(2).SequenceEqual(BMP))
+            {
+                return true;
+            }
+            else if (file.Take(8).SequenceEqual(DOC))
+            {
+                return true;
+            }
+            else if (file.Take(3).SequenceEqual(JPG))
+            {
+                return true;
+            }
+            else if (file.Take(5).SequenceEqual(PDF))
+            {
+                return true;
+            }
+            else if (file.Take(16).SequenceEqual(PNG))
+            {
+                return true;
+            }
+            else if (file.Take(7).SequenceEqual(RAR))
+            {
+                return true;
+            }
+            else if (file.Take(4).SequenceEqual(ZIP_DOCX))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public void CreateMetadata(FileMetadataDto fileMetadataDto)

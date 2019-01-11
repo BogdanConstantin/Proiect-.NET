@@ -1,9 +1,8 @@
-﻿namespace ClassesManagement.Controllers
+﻿namespace FilesHandler.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
     using BusinessLogic.FilesHandler.Abstractions;
     using Microsoft.AspNetCore.Http;
@@ -62,7 +61,7 @@
         }
 
         [HttpGet("fileId={fileEntityId:guid}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid fileEntityId)
+        public IActionResult GetById([FromRoute] Guid fileEntityId)
         {
             var metadata = _filesHandlerLogic.GetMetadataById(fileEntityId);
 

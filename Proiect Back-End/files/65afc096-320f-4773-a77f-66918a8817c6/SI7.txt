@@ -1,6 +1,0 @@
-Se da graful din figura 2.1
-Decideti daca urmatorul predicat are valoare true sau false, verificand explicit conditiile teoremei 5 din curs
-Se vor preciza valorile pentru S, S', P, P', I1... In si puntile intre insule
-Predicatul 
-can share(w, O17, O5, G)
-can share(r, O17, O4, G)

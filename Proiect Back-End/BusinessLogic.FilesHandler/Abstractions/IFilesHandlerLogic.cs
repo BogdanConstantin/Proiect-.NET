@@ -23,5 +23,7 @@ namespace BusinessLogic.FilesHandler.Abstractions
         ICollection<FileMetadataDto> GetMetadataByCourseId(Guid courseEntityId);
 
         ICollection<FileMetadataDto> GetAllMetadata();
+
+        Task<bool> CheckFileValid(string filePath);
     }
 }
