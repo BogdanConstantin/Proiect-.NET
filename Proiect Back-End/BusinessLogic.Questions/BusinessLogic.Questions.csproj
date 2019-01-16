@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="Implementations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
@@ -23,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccess.Questions\DataAccess.Questions.csproj" />
+    <ProjectReference Include="..\Models.Questions\Models.Questions.csproj" />
   </ItemGroup>
 
 </Project>
