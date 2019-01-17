@@ -14,6 +14,10 @@ namespace DataAccess.Gamification.Configurations.Entities
                 .IsRequired()
                 .HasMaxLength(250);
 
+            builder.Property(p => p.SecurityCode)
+                .IsRequired()
+                .HasMaxLength(4);
+
             builder.Property(p => p.StartDate)
                 .IsRequired()
                 .HasMaxLength(7);

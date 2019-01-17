@@ -6,6 +6,8 @@ namespace Entities.Gamification
     {
         public string Question { get; set; }
 
+        public string SecurityCode { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
