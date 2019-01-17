@@ -13,6 +13,8 @@ namespace BusinessLogic.Questions.Configurations
             services.AddDataAccess(connectionString);
             services.AddScoped<IAnswerLogic, AnswerLogic>();
             services.AddScoped<IQuestionLogic, QuestionLogic>();
+            services.AddScoped<IQuestionNotification, QuestionNotification>();
+            services.AddScoped<IServiceClient, ServiceClient>();
         }
     }
 }

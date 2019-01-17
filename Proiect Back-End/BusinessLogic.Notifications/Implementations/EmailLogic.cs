@@ -82,8 +82,8 @@ namespace BusinessLogic.Notifications.Implementations
             client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("email", "password");
-            MailMessage mail = new MailMessage("bogadn1997@gmail.com", receiver);
+            client.Credentials = new NetworkCredential("learningsmart211@gmail.com", "q1w2e3r4t5!");
+            MailMessage mail = new MailMessage("learningsmart211@gmail.com", receiver);
             mail.Subject = subject;
             mail.Body = body;
             mail.BodyEncoding = Encoding.UTF8;

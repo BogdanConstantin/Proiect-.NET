@@ -1,6 +1,6 @@
 ﻿using DataAccess.Questions.Abstractions;
 
-namespace BusinessLogic.ClassesManagement.Implementations
+namespace BusinessLogic.Questions.Implementations
 {
     using System;
 

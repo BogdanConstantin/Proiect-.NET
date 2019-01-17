@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessLogic.ClassesManagement.Implementations;
 using BusinessLogic.Questions.Abstractions;
 using DataAccess.Questions.Abstractions;
 using Entities.Questions;
@@ -10,13 +9,15 @@ namespace BusinessLogic.Questions.Implementations
 {
     public class QuestionLogic : BaseLogic, IQuestionLogic
     {
-        public QuestionLogic(IRepository repository)
+        public readonly IQuestionNotification _questionNotification;
+        public QuestionLogic(IRepository repository, IQuestionNotification questionNotification)
             : base(repository)
         {
+            _questionNotification = questionNotification;
         }
         public Question Create(QuestionDto questionDto)
         {
-            var newQuestion = new Question()
+            var newQuestion = new Question
             {
                 AuthorId = Guid.NewGuid(),
                 QuestionString = questionDto.QuestionString,
@@ -25,6 +26,16 @@ namespace BusinessLogic.Questions.Implementations
 
             _repository.Insert(newQuestion);
             _repository.Save();
+
+            var body = "This is the question:" + newQuestion.QuestionString;
+            var notification = new Notification
+            {
+                Subject = "A new question was added",
+                Body = body,
+                Receiver = "learningsmart211@gmail.com"
+            };
+
+            _questionNotification.SendEmail(notification);
 
             return newQuestion;
         }
