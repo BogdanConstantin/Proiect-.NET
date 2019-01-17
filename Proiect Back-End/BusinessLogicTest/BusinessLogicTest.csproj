@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic.ClassesManagement\BusinessLogic.ClassesManagement.csproj" />
+    <ProjectReference Include="..\BusinessLogic.Questions\BusinessLogic.Questions.csproj" />
   </ItemGroup>
 
 </Project>

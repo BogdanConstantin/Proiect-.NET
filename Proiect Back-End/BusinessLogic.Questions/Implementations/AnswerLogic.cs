@@ -10,10 +10,13 @@ namespace BusinessLogic.Questions.Implementations
     public class AnswerLogic : BaseLogic, IAnswerLogic
     {
         public readonly IQuestionNotification _questionNotification;
-        public AnswerLogic(IRepository repository, IQuestionNotification questionNotification)
+        public readonly IQuestionLogic _questionLogic;
+
+        public AnswerLogic(IRepository repository, IQuestionNotification questionNotification, IQuestionLogic questionLogic)
             : base(repository)
         {
             _questionNotification = questionNotification;
+            _questionLogic = questionLogic;
         }
 
         public Answer Create(AnswerDto answerDto)
@@ -29,7 +32,11 @@ namespace BusinessLogic.Questions.Implementations
             _repository.Insert(newAnswer);
             _repository.Save();
 
-            var body = "This is the answer: " + newAnswer.AnswerString;
+            var questionEntityId = this._repository.GetLastByFilter<Question>(x => x.Id == newAnswer.QuestionId).EntityId;
+
+            var question = this._questionLogic.GetById(questionEntityId);
+
+            var body = "For the question: '" + question.QuestionString + "' this answer was added: '" + newAnswer.AnswerString +"'.";
             var notification = new Notification
             {
                 Subject = "A new answer was added",
