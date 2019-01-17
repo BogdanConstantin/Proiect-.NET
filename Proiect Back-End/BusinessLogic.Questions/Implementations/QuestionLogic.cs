@@ -27,7 +27,7 @@ namespace BusinessLogic.Questions.Implementations
             _repository.Insert(newQuestion);
             _repository.Save();
 
-            var body = "This is the question:" + newQuestion.QuestionString;
+            var body = "This is the question: " + newQuestion.QuestionString;
             var notification = new Notification
             {
                 Subject = "A new question was added",

@@ -9,9 +9,11 @@ namespace BusinessLogic.Questions.Implementations
 {
     public class AnswerLogic : BaseLogic, IAnswerLogic
     {
-        public AnswerLogic(IRepository repository)
+        public readonly IQuestionNotification _questionNotification;
+        public AnswerLogic(IRepository repository, IQuestionNotification questionNotification)
             : base(repository)
         {
+            _questionNotification = questionNotification;
         }
 
         public Answer Create(AnswerDto answerDto)
@@ -26,6 +28,16 @@ namespace BusinessLogic.Questions.Implementations
 
             _repository.Insert(newAnswer);
             _repository.Save();
+
+            var body = "This is the answer: " + newAnswer.AnswerString;
+            var notification = new Notification
+            {
+                Subject = "A new answer was added",
+                Body = body,
+                Receiver = "learningsmart211@gmail.com"
+            };
+
+            _questionNotification.SendEmail(notification);
 
             return newAnswer;
         }
