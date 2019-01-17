@@ -1,4 +1,7 @@
-﻿using BusinessLogic.Questions.Configurations;
+﻿using System;
+using System.Linq;
+using BusinessLogic.Questions.Configurations;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +24,13 @@ namespace Questions
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddFluentValidation(
+                fv =>
+                {
+                    fv.RegisterValidatorsFromAssembly(
+                        AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(
+                            assembly => assembly.FullName.Contains("BusinessLogic.Questions")));
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>
             {
