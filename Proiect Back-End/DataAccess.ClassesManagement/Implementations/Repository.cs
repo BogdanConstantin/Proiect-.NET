@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    using DataAccess.ClassesManagement.Abstractions;
+    using Abstractions;
 
     using Entities.ClassesManagement;
 

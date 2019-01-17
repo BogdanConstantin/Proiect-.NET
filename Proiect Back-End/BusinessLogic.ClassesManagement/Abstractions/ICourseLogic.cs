@@ -7,7 +7,7 @@
 
     public interface ICourseLogic
     {
-        void Create(CourseDto courseDto);
+        Course Create(CourseDto courseDto);
 
         Course Update(CourseDto courseDto, Guid courseEntityId);
 

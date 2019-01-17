@@ -24,9 +24,15 @@ namespace ClassesManagement.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] ManagementDto managementDto)
         {
-            _managementLogic.Create(managementDto);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Ok(managementDto);
+            var newCourseManagement = _managementLogic.Create(managementDto);
+
+            return CreatedAtAction(nameof(GetById), new { CourseManagementEntityId = newCourseManagement.EntityId }, managementDto);
+
         }
 
         [HttpPut("{courseManagementEntityId:guid}")]
@@ -35,7 +41,10 @@ namespace ClassesManagement.Controllers
             var result = _managementLogic.Update(managementDto, courseManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
+
             return Ok(result);
         }
 
@@ -45,7 +54,10 @@ namespace ClassesManagement.Controllers
             var result = _managementLogic.Delete(courseManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
+
             return Ok(result);
         }
 
@@ -55,7 +67,10 @@ namespace ClassesManagement.Controllers
             var result = _managementLogic.GetById(courseManagementEntityId);
 
             if (result == null)
+            {
                 return NotFound();
+            }
+
             return Ok(result);
         }
 

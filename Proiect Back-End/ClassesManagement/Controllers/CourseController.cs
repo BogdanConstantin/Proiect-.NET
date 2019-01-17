@@ -22,9 +22,13 @@
         [HttpPost]
         public IActionResult Create([FromBody] CourseDto courseDto)
         {
-            _courseLogic.Create(courseDto);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var newCourse = _courseLogic.Create(courseDto);
 
-            return Ok(courseDto);
+            return CreatedAtAction(nameof(GetById), new { courseEntityId = newCourse.EntityId }, courseDto);
         }
 
         [HttpPut("{courseEntityId:guid}")]

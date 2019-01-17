@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace BusinessLogic.Notifications.Implementations
 {
-    using BusinessLogic.Notifications.Abstractions;
+    using Abstractions;
 
     using DataAccess.Notifications.Abstractions;
 
@@ -18,8 +21,9 @@ namespace BusinessLogic.Notifications.Implementations
         {
         }
 
-        public void Create(EmailDto emailDto)
+        public Email Create(EmailDto emailDto)
         {
+            SendEmail(emailDto.Receiver, emailDto.Subject, emailDto.Body);
             var newEmail = new Email
                                {
                                    AuthorId = Guid.NewGuid(),
@@ -30,6 +34,8 @@ namespace BusinessLogic.Notifications.Implementations
 
             _repository.Insert(newEmail);
             _repository.Save();
+
+            return newEmail;
         }
 
         public EmailDto GetById(Guid emailId)
@@ -65,6 +71,25 @@ namespace BusinessLogic.Notifications.Implementations
             }
 
             return emailDtos;
+        }
+
+        public void SendEmail(string receiver, string subject, string body)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "127.0.0.1";
+            client.Port = 1925;
+            client.EnableSsl = false;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("learningsmart211@gmail.com", "q1w2e3r4t5!");
+            MailMessage mail = new MailMessage("learningsmart211@gmail.com", receiver);
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.BodyEncoding = Encoding.UTF8;
+            mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+            client.Send(mail);
+            mail.Dispose();
         }
     }
 }

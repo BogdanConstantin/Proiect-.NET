@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using BusinessLogic.ClassesManagement.Abstractions;
+    using Abstractions;
 
     using DataAccess.ClassesManagement.Abstractions;
 
@@ -17,7 +17,7 @@
         {
         }
 
-        public void Create(CourseDto courseDto)
+        public Course Create(CourseDto courseDto)
         {
             var newCourse = new Course
             {
@@ -30,6 +30,8 @@
 
             _repository.Insert(newCourse);
             _repository.Save();
+
+            return newCourse;
         }
 
         public Course Update(CourseDto courseDto, Guid courseEntityId)

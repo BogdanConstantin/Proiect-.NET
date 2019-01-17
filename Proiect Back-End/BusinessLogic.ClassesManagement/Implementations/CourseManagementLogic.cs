@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace BusinessLogic.ClassesManagement.Implementations
 {
     using System;
-    using BusinessLogic.ClassesManagement.Abstractions;
+    using Abstractions;
     using DataAccess.ClassesManagement.Abstractions;
 
     using Entities.ClassesManagement;
@@ -18,7 +18,7 @@ namespace BusinessLogic.ClassesManagement.Implementations
         {
         }
 
-        public void Create(ManagementDto courseManagementDto)
+        public CourseManagement Create(ManagementDto courseManagementDto)
         {
             var newCourse = new CourseManagement()
             {
@@ -32,6 +32,8 @@ namespace BusinessLogic.ClassesManagement.Implementations
 
             _repository.Insert(newCourse);
             _repository.Save();
+
+            return newCourse;
         }
 
         public CourseManagement Update(ManagementDto courseManagementDto, Guid courseManagementEntityId)

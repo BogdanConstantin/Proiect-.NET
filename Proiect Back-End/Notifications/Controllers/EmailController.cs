@@ -24,9 +24,14 @@ namespace Notifications.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] EmailDto emailDto)
         {
-            _emailLogic.Create(emailDto);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return Ok(emailDto);
+            var email = _emailLogic.Create(emailDto);
+
+            return CreatedAtAction(nameof(GetById), new { emailId = email.Id }, emailDto);
         }
 
         [HttpGet("{emailId:guid}")]

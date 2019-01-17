@@ -9,7 +9,7 @@ namespace BusinessLogic.ClassesManagement.Abstractions
 
     public interface ILaboratoryManagementLogic
     {
-        void Create(ManagementDto laboratoryManagementDto);
+        LaboratoryManagement Create(ManagementDto laboratoryManagementDto);
 
         LaboratoryManagement Update(ManagementDto laboratoryManagementDto, Guid laboratoryManagementEntityId);
 

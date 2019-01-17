@@ -1,7 +1,7 @@
 ﻿namespace DataAccess.ClassesManagement.Configurations
 {
-    using DataAccess.ClassesManagement.Abstractions;
-    using DataAccess.ClassesManagement.Implementations;
+    using Abstractions;
+    using Implementations;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

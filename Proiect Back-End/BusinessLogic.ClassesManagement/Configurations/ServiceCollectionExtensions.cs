@@ -1,7 +1,7 @@
 ﻿namespace BusinessLogic.ClassesManagement.Configurations
 {
-    using BusinessLogic.ClassesManagement.Abstractions;
-    using BusinessLogic.ClassesManagement.Implementations;
+    using Abstractions;
+    using Implementations;
 
     using DataAccess.ClassesManagement.Configurations;
 
