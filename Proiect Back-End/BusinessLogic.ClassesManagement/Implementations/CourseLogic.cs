@@ -73,6 +73,9 @@
         {
             var course = _repository.GetLastByFilter<Course>(c => c.EntityId == courseEntityId);
 
+            if (course == null)
+                return null;
+
             var courseDto = new CourseDto
             {
                 CourseTitle = course.CourseTitle,

@@ -39,6 +39,8 @@ namespace FilesHandler
                 c.SwaggerDoc("v1", new Info { Title = "FilesHandler API", Version = "v1" });
             });
 
+            
+
             services.AddBusinessLogic(Configuration.GetConnectionString("ProjectDotNet"));
             services.AddApiVersioning(o => o.ApiVersionReader = new HeaderApiVersionReader("api-version"));
         }

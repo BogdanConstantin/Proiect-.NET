@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+
 namespace BusinessLogic.FilesHandler.Abstractions
 {
     using Entities.FilesHandler;
@@ -10,20 +12,22 @@ namespace BusinessLogic.FilesHandler.Abstractions
 
     public interface IFilesHandlerLogic
     {
-        Task<Object> UploadFiles(Guid courseId, List<IFormFile> files);
+        Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file);
 
-        void CreateMetadata(FileMetadataDto fileMetadataDto);
+        FileMetadata Create(FileMetadataDto fileMetadataDto);
 
-        FileMetadata UpdateMetadata(FileMetadataDto fileMetadataDto, Guid fileEntityId);
+        FileMetadata Update(FileMetadataDto fileMetadataDto, Guid fileEntityId);
 
-        FileMetadata DeleteMetadata(Guid fileEntityId);
+        FileMetadata Delete(Guid fileEntityId);
 
-        FileMetadataDto GetMetadataById(Guid fileEntityId);
+        FileMetadataDto GetById(Guid fileEntityId);
 
-        ICollection<FileMetadataDto> GetMetadataByCourseId(Guid courseEntityId);
+        ICollection<FileMetadataDto> GetByCourseId(Guid courseEntityId);
 
-        ICollection<FileMetadataDto> GetAllMetadata();
+        ICollection<FileMetadataDto> GetAll();
 
-        Task<bool> CheckFileValid(string filePath);
+        bool CheckFileValid(string filePath);
+
+        FileStreamResult GetFile(Guid fileEntityId, ControllerBase controller);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace BusinessLogic.ClassesManagement.Implementations
+﻿namespace BusinessLogic.FilesHandler.Implementations
 {
     using System;
-
     using DataAccess.FilesHandler.Abstractions;
 
     public class BaseLogic

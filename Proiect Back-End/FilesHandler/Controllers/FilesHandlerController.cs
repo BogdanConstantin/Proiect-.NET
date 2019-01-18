@@ -29,15 +29,22 @@
         }
 
         [HttpPost("{courseEntityId:guid}/upload")]
-        public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseEntityId, List<IFormFile> files)
+        public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseEntityId, IFormFile file)
         {
-            return Ok(await _filesHandlerLogic.UploadFiles(courseEntityId, files));
+            var fileDto = await _filesHandlerLogic.UploadFiles(courseEntityId, file);
+
+            if (fileDto == null)
+                return NotFound("Course not found!");
+
+            var newFile = _filesHandlerLogic.Create(fileDto);
+
+            return CreatedAtAction(nameof(GetById), new { fileEntityId = newFile.EntityId }, fileDto);
         }
 
         [HttpPut("fileId={fileEntityId:guid}")]
         public IActionResult Update([FromBody] FileMetadataDto fileMetadataDto, [FromRoute] Guid fileEntityId)
         {
-            var result = _filesHandlerLogic.UpdateMetadata(fileMetadataDto, fileEntityId);
+            var result = _filesHandlerLogic.Update(fileMetadataDto, fileEntityId);
 
             if (result == null)
             {
@@ -50,7 +57,7 @@
         [HttpDelete("fileId={fileEntityId:guid}")]
         public IActionResult Delete([FromRoute] Guid fileEntityId)
         {
-            var result = _filesHandlerLogic.DeleteMetadata(fileEntityId);
+            var result = _filesHandlerLogic.Delete(fileEntityId);
 
             if (result == null)
             {
@@ -63,25 +70,20 @@
         [HttpGet("fileId={fileEntityId:guid}")]
         public IActionResult GetById([FromRoute] Guid fileEntityId)
         {
-            var metadata = _filesHandlerLogic.GetMetadataById(fileEntityId);
+            var file = _filesHandlerLogic.GetFile(fileEntityId, this);
 
-            if (metadata == null)
+            if (file == null)
             {
                 return NotFound();
             }
 
-            Stream stream = new FileStream(metadata.Path + metadata.FileName, FileMode.Open);
-
-            if (stream == null)
-                return NotFound();
-
-            return File(stream, "application/octet-stream", metadata.FileName);
+            return file;
         }
 
         [HttpGet("courseId={courseEntityId:guid}")]
         public IActionResult GetByCourseId([FromRoute] Guid courseEntityId)
         {
-            var result = _filesHandlerLogic.GetMetadataByCourseId(courseEntityId);
+            var result = _filesHandlerLogic.GetByCourseId(courseEntityId);
 
             if (result == null)
             {
@@ -94,7 +96,7 @@
         [HttpGet]
         public ICollection<FileMetadataDto> GetAll()
         {
-            var result = _filesHandlerLogic.GetAllMetadata();
+            var result = _filesHandlerLogic.GetAll();
 
             return result;
         }
