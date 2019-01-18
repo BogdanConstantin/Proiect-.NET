@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Questions.Abstractions;
+﻿using DataAccess.Questions.Abstractions;
 using FluentValidation;
 using FluentValidation.Results;
 using Models.Questions;

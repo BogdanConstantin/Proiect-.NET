@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using BusinessLogic.Questions.Validations;
 using DataAccess.Questions.Abstractions;
-using Entities.ClassesManagement;
 using Entities.Questions;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

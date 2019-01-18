@@ -10,10 +10,12 @@ namespace BusinessLogic.Gamification.Implementations
 {
     public class SessionLogic :BaseLogic,  ISessionLogic
     {
-        public SessionLogic(IRepository repository)
+        private ISessionNotification _sessionNotification;
+
+        public SessionLogic(IRepository repository, ISessionNotification sessionNotification)
             : base(repository)
         {
-            
+            _sessionNotification = sessionNotification;
         }
 
         public Session Create(SessionWriteDto sessionDto)
@@ -32,6 +34,19 @@ namespace BusinessLogic.Gamification.Implementations
 
             _repository.Insert(newSession);
             _repository.Save();
+
+
+            var body = "A new session has been created with the question '" + newSession.Question + "'! It ends at " + newSession.EndDate.ToString() + "!\n" +
+                       "Use the code '" + newSession.SecurityCode + "' to join!";
+            var notification = new Notification
+            {
+                Subject = "A new session has been created!",
+                Body = body,
+                Receiver = "mihai.catalin197@gmail.com"
+            };
+
+            _sessionNotification.SendEmail(notification);
+
             return newSession;
         }
 

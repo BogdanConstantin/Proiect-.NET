@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using DataAccess.Questions.Abstractions;
 using Entities.Questions;
@@ -9,7 +7,7 @@ using Models.Questions;
 
 namespace BusinessLogic.Questions.Validations
 {
-   public static class BaseValidator
+    public static class BaseValidator
     {
         public static bool IsGuid(Guid candidate)
         {

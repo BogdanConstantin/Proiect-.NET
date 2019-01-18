@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.Authentication.Implementations
 {
-    using System.Collections;
 
     using BusinessLogic.Authentication.Abstractions;
 

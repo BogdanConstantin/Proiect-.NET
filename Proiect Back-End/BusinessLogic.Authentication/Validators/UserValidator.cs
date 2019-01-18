@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BusinessLogic.Authentication.Validators
+﻿namespace BusinessLogic.Authentication.Validators
 {
     using FluentValidation;
 

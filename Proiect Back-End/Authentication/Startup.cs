@@ -8,12 +8,8 @@ using Swashbuckle.AspNetCore.Swagger;
 namespace Authentication
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
-
-    using BusinessLogic.Authentication.Abstractions;
     using BusinessLogic.Authentication.Configurations;
 
     using FluentValidation.AspNetCore;
@@ -21,8 +17,6 @@ namespace Authentication
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Mvc.Versioning;
     using Microsoft.IdentityModel.Tokens;
-
-    using Swashbuckle.AspNetCore.SwaggerUI;
 
     public class Startup
     {

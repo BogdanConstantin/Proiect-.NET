@@ -12,6 +12,8 @@ namespace BusinessLogic.Gamification.Configurations
         public static void AddBusinessLogic(this IServiceCollection services, string connectionString)
         {
             services.AddDataAccess(connectionString);
+            services.AddScoped<IServiceClient, ServiceClient>();
+            services.AddScoped<ISessionNotification, SessionNotification>();
             services.AddScoped<ISessionLogic, SessionLogic>();
             services.AddScoped<IAnswerLogic, AnswerLogic>();
         }

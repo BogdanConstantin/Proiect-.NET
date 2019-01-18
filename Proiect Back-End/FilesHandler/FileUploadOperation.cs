@@ -1,8 +1,5 @@
 ﻿using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.FilesHandler.Configurations
 {

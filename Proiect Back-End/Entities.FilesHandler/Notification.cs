@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities.FilesHandler
+﻿namespace Entities.FilesHandler
 {
     public class Notification
     {
